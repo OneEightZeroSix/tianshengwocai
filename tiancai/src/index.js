@@ -7,12 +7,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 //引入页面组件
 import Home from './pages/Home/Home.jsx';
+import Lend from './pages/Lend/Lend.jsx';
+import Sign from './pages/Sign/Sign.jsx';
 
 ReactDOM.render(
 	<Router>
 		<div>
 		 	<Route path="/home/"  component={Home} />
-	      	
+		 	<Route path="/Lend/"  component={Lend} />
+	      	<Route path="/Sign/"  component={Sign} />
 		</div>
 	</Router>
 	, document.getElementById('root'));
