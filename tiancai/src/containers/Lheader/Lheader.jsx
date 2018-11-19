@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './Lheader.css';
-
+//classnames库
+import classnames from 'classnames'
+//链接仓库
+import {connect} from 'react-redux';
 class Lheader extends Component {
   //数据
   constructor(props) {
@@ -14,14 +17,22 @@ class Lheader extends Component {
 
   //html
   render() {
+    var btnClass = classnames({
+        "fixd":true,
+        "cur":this.props.tab_l
+    });
+    var btnClass2 = classnames({
+        "curt":true,
+        "cur":!this.props.tab_l
+    });
     return (
       <div>
         <header className="header tc">
             <article className="header_container por">
                 {/*切换*/}
                 <h1 className="ft15 nav_head tc">
-                    <a href="/about?type=0" className="fixd cur" type="PRODUCT" value="2">散标区</a>
-                    <a href="/about?type=1" className="curt">债转区</a>
+                    <a className={btnClass} type="PRODUCT" value="2" onClick={this.props.toggleTab.bind(this)}>散标区</a>
+                    <a className={btnClass2} onClick={this.props.toggleTab.bind(this)}>债转区</a>
                 </h1>
             </article>
         </header>        
@@ -41,4 +52,16 @@ class Lheader extends Component {
   }
 }
 
-export default Lheader;
+export default connect((state)=>{
+    return state
+},(dispatch)=>{
+    return {
+      toggleTab(){
+        dispatch({
+          type:"toggleTab",
+          tab_l:!this.props.tab_l
+        })
+        
+      }
+    }
+})(Lheader);

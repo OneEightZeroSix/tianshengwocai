@@ -1,26 +1,44 @@
 import React, { Component } from 'react';
 import './Llist.css';
-
+//classNames库
+import classnames from 'classnames'
+//链接仓库
+import {connect} from 'react-redux';
 class Llist extends Component {
   //数据
   constructor(props) {
     super(props);
     this.state = {
-       
+        tab_l:this.props.tab_l  
     };
   }
   //事件
-
+  toggle(){
+    this.setState({
+        
+    })
+  }
 
   //html
   render() {
+    var artClass = classnames({
+        "tab_box":true,
+        "pb50":true,
+        "hide":this.props.tab_l
+    });
+    var artClass2 = classnames({
+        "tab_box":true,
+        "hide":!this.props.tab_l
+    })
     return (
     <div>
-    <article className="tab_box pb50">
-        <div className="list_wra pb10">
+    <article className={
+        artClass
+    }>
+        <div className="list_wra pb10" >
             <div className="calendar_item">
                 <div className="std_rate  pt10 pb10 pl20 pr20">
-                    <a href="/wealthCarefree/details?productId=7621" className="block">
+                    <a  className="block">
                         <h1 className="ft14 cf mb5 pt5">
                             <label className="hotSign ft12 fl mr5">
                                 散&nbsp;标
@@ -425,7 +443,9 @@ class Llist extends Component {
             <img src="http://weixin.51tiancai.com/tiancaibao/pages/invest/mores.png" width="140px" />
         </div>
     </article>
-    <article id="opacities" className="tab_box hide">
+    <article id="opacities" className={
+       artClass2
+    } onClick={this.toggle.bind(this)}>
         <div className="instruction">
             <h2 className="tc ft15 coff5 pt15">
                 债转规则说明
@@ -435,7 +455,7 @@ class Llist extends Component {
             </p>
         </div>
         <div className="ins">
-            <a href="selfBid/details?lockDays=30">
+            <a >
                 <h2>
                     <label className="hotSign">
                         债&nbsp;转
@@ -2144,4 +2164,6 @@ class Llist extends Component {
   }
 }
 
-export default Llist;
+export default connect((state)=>{
+    return state
+})(Llist);

@@ -1,5 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+//classnames库
+import classnames from 'classnames'
+//状态管理
+import {Provider, connect} from 'react-redux';
+import {createStore} from 'redux';
 //引入路由
 import { HashRouter as Router, Route} from "react-router-dom";
 
@@ -16,17 +21,41 @@ import Mine from './pages/Mine/Mine.jsx';
 
 import Footer from './containers/Footer/Footer.jsx'
 
+//创建仓库
+const store = createStore(function(state = {
+  	tab_l:false,
+}, action) {
+  		switch(action.type){
+  			case 'toggleTab':
+  			return {
+            ...state,
+            tab_l:action.tab_l
+        }
+        	case 'toggleCur':
+  			return {
+            ...state,
+            cur_l:action.cur_l
+        }
+  			default:
+        	return state
+  		}
+  }
+);
+
+
 ReactDOM.render(
-	<Router>
-		<div>
-		 	<Route path="/home/"  component={Home} />
-		 	<Route path="/Lend/"  component={Lend} />
-	      	<Route path="/Sign/"  component={Sign} />
-			<Route path="/service" component={Service} />
-			<Route path="/mine" component={Mine} />
-			<Footer />
-		</div>
-	</Router>
+	<Provider store={store}>
+		<Router>
+			<div>
+			 	<Route path="/home/"  component={Home} />
+			 	<Route path="/Lend/"  component={Lend} />
+		      	<Route path="/Sign/"  component={Sign} />
+				<Route path="/service" component={Service} />
+				<Route path="/mine" component={Mine} />
+				<Footer />
+			</div>
+		</Router>
+	</Provider>
 	, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
