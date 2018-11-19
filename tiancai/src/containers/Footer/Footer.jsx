@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import './Footer.css';
 
 class Footer extends Component {
@@ -6,9 +7,43 @@ class Footer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-       
-    };
+      nav:0,
+       navs:[{
+        title:"首页",
+        className:"idx",
+        link:"/home",
+        iconName:"index_icon",
+        icon_yel:"index_yel",
+        qty:0
+       },{
+        title:"出借",
+        className:"ivst",
+        link:"/Lend",
+        iconName:"invest_icon",
+        icon_yel:"invest_yel",
+        qty:0
+       },{
+        title:"服务",
+        className:"sev",
+        link:"/service",
+        iconName:"serve_icon",
+        icon_yel:"serve_yel",
+        qty:0
+       },{
+        title:"我的",
+        className:"idx",
+        link:"/mine",
+        iconName:"home_icon",
+        icon_yel:"home_yel",
+        qty:2
+       }]
+    }
   }
+    tabClick(index){
+      this.setState({
+        nav:index
+      })
+    }
   //事件
 
 
@@ -17,25 +52,24 @@ class Footer extends Component {
     return (
         <div className="foot_menu"> 
            <div className="footer_nav"> 
-            <ul> 
-             <li className="idx"> <a href="/"> <i className="iconfont  index_yel "></i> 
-               <div className="name co33">
-                首页
-               </div> </a> </li> 
-             <li className="ivst"> <a href="/about"> <i className="iconfont  invest_icon "></i> 
-               <div className="name">
-                出借
-               </div> </a> </li> 
-             <li className="sev"> <a href="/serve"> <i className="iconfont  serve_icon "></i> 
-               <div className="name">
-                服务
-               </div> </a> </li> 
-             <li className="hme"> <a href="/home"> <i className="messages" id="mes" style={{
-              display: "block"
-            }}>2</i> <i className="iconfont  home_icon "></i> 
-               <div className="name">
-                我的
-               </div> </a> </li> 
+            <ul>
+              {(()=>{
+                return (this.state.navs.map((item,index)=>{
+                  return (
+                    <li onClick={this.tabClick.bind(this,index)} className={`${item.className}`} key={index}> <Link  to={ {pathname:`${item.link}` }}  replace >
+                    {/* to={ {pathname:`${item.link}`} repalce */}
+                    {(()=>{
+                      if(item.qty > 0){
+                        return (<i className="messages" id="mes" style={{display: "block"}}>{item.qty}</i>)
+                      }
+                    })()}
+                    <i  className={this.state.nav===index?`iconfont ${item.icon_yel}`:`iconfont ${item.iconName}`}></i> 
+                      <div className="name">
+                        {item.title}
+                      </div> </Link> </li>
+                  )
+                }))
+              })()} 
             </ul> 
            </div> 
           </div>

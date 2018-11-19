@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 //css
-import '../../assets/common.css';
 import './Sign.css';
 
 //引入子组件

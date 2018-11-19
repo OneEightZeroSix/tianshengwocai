@@ -139,7 +139,7 @@ class Introduction extends Component {
     </div> 
    </div> 
    <div className="tc ft12 pt20 pb15 nocor"> 
-    <img src="/tiancaibao/pages/index/images/b_logo.png" alt="天财宝小钱包" className="pb5" width="160px" />
+    <img src="https://weixin.51tiancai.com/tiancaibao/pages/index/images/b_logo.png" alt="天财宝小钱包" className="pb5" width="160px" />
     <br /> &nbsp;&nbsp;&nbsp;&nbsp;市场有风险，出借需谨慎 
    </div> 
   </div>
