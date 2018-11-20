@@ -9,14 +9,58 @@ class Llist extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        tab_l:this.props.tab_l  
+        head:0,
+        tail:10,
+        tab_l:this.props.tab_l,
+        Llist:[]  
     };
   }
   //事件
   toggle(){
     this.setState({
-        
+       
     })
+  }
+  loadMore(){
+    var self = this;
+    React.axios.get('Llist.json', {
+    params: {
+         
+      }
+    })
+    .then(function (response) {
+      var Llist = response.data.Llist.slice(self.state.head,self.state.tail)
+      self.setState({
+        Llist:self.state.Llist.concat(Llist)
+      })
+      // console.log(self.state.Llist)    
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  componentWillMount() {
+  window.onscroll = ()=>{
+    var scrollTop = document.documentElement.scrollTop;
+    var scrollHeight = document.documentElement.scrollHeight;
+    // console.log(clientHeight,scrollTop,scrollHeight);
+    if(scrollHeight-scrollTop==667){
+            this.setState({
+                head:this.state.head + 10,
+                tail:this.state.tail + 10
+            });
+            this.loadMore()
+        }
+    }
+}
+
+  componentDidMount(){
+      this.loadMore()
+  }
+
+  componentWillUnmount(){
+      
   }
 
   //html
@@ -37,7 +81,10 @@ class Llist extends Component {
     }>
         <div className="list_wra pb10" >
             <div className="calendar_item">
-                <div className="std_rate  pt10 pb10 pl20 pr20">
+            {(()=>{
+                return this.state.Llist.map((item,index)=>{
+                    return(
+                    <div key={index} className="std_rate  pt10 pb10 pl20 pr20">
                     <a  className="block">
                         <h1 className="ft14 cf mb5 pt5">
                             <label className="hotSign ft12 fl mr5">
@@ -77,366 +124,9 @@ class Llist extends Component {
                         </div>
                     </a>
                 </div>
-                <div className="std_rate  pt10 pb10 pl20 pr20">
-                    <a href="/wealthCarefree/details?productId=7624" className="block">
-                        <h1 className="ft14 cf mb5 pt5">
-                            <label className="hotSign ft12 fl mr5">
-                                散&nbsp;标
-                            </label>
-                            <label className="fl block wordBreak w90">
-                                181115002
-                            </label>
-                        </h1>
-                        <div className="fl std_in1">
-                            <p className="ft14 red">
-                                <span className="ft22 saleRate">
-                                    8.50
-                                </span>
-                                %
-                            </p>
-                            <p className="ft12 nocor">
-                                历史年化利率
-                            </p>
-                        </div>
-                        <div className="fl std_in2">
-                            <p className="ft14 line_hgt33 co33">
-                                项目期限90天
-                            </p>
-                            <p className="ft12 nocor">
-                                先息后本
-                            </p>
-                        </div>
-                        <div className="fr std_in3">
-                            <canvas className="circles" data-progress="100" data-text="还款中" height="100"
-                            width="100" style={{
-                              height: "50px", 
-                              width: "50px",
-                              backgroundColor: "rgb(255, 255, 255)"
-                            }}>
-                            </canvas>
-                        </div>
-                    </a>
-                </div>
-                <div className="std_rate  pt10 pb10 pl20 pr20">
-                    <a href="/wealthCarefree/details?productId=7623" className="block">
-                        <h1 className="ft14 cf mb5 pt5">
-                            <label className="hotSign ft12 fl mr5">
-                                散&nbsp;标
-                            </label>
-                            <label className="fl block wordBreak w90">
-                                181117001
-                            </label>
-                        </h1>
-                        <div className="fl std_in1">
-                            <p className="ft14 red">
-                                <span className="ft22 saleRate">
-                                    8.50
-                                </span>
-                                %
-                            </p>
-                            <p className="ft12 nocor">
-                                历史年化利率
-                            </p>
-                        </div>
-                        <div className="fl std_in2">
-                            <p className="ft14 line_hgt33 co33">
-                                项目期限90天
-                            </p>
-                            <p className="ft12 nocor">
-                                先息后本
-                            </p>
-                        </div>
-                        <div className="fr std_in3">
-                            <canvas className="circles" data-progress="100" data-text="还款中" height="100"
-                            width="100" style={{
-                              height: "50px", 
-                              width: "50px", 
-                              backgroundColor: "rgb(255, 255, 255)"
-                            }}>
-                            </canvas>
-                        </div>
-                    </a>
-                </div>
-                <div className="std_rate  pt10 pb10 pl20 pr20">
-                    <a href="/wealthCarefree/details?productId=7622" className="block">
-                        <h1 className="ft14 cf mb5 pt5">
-                            <label className="hotSign ft12 fl mr5">
-                                散&nbsp;标
-                            </label>
-                            <label className="fl block wordBreak w90">
-                                181117001
-                            </label>
-                        </h1>
-                        <div className="fl std_in1">
-                            <p className="ft14 red">
-                                <span className="ft22 saleRate">
-                                    8.50
-                                </span>
-                                %
-                            </p>
-                            <p className="ft12 nocor">
-                                历史年化利率
-                            </p>
-                        </div>
-                        <div className="fl std_in2">
-                            <p className="ft14 line_hgt33 co33">
-                                项目期限90天
-                            </p>
-                            <p className="ft12 nocor">
-                                先息后本
-                            </p>
-                        </div>
-                        <div className="fr std_in3">
-                            <canvas className="circles" data-progress="100" data-text="还款中" height="100"
-                            width="100" style={{
-                              height: "50px", 
-                              width: "50px", 
-                              backgroundColor: "rgb(255, 255, 255)"
-                            }}>
-                            </canvas>
-                        </div>
-                    </a>
-                </div>
-                <div className="std_rate  pt10 pb10 pl20 pr20">
-                    <a href="/wealthCarefree/details?productId=7619" className="block">
-                        <h1 className="ft14 cf mb5 pt5">
-                            <label className="hotSign ft12 fl mr5">
-                                散&nbsp;标
-                            </label>
-                            <label className="fl block wordBreak w90">
-                                C181112003
-                            </label>
-                        </h1>
-                        <div className="fl std_in1">
-                            <p className="ft14 red">
-                                <span className="ft22 saleRate">
-                                    8.50
-                                </span>
-                                %
-                            </p>
-                            <p className="ft12 nocor">
-                                历史年化利率
-                            </p>
-                        </div>
-                        <div className="fl std_in2">
-                            <p className="ft14 line_hgt33 co33">
-                                项目期限90天
-                            </p>
-                            <p className="ft12 nocor">
-                                先息后本
-                            </p>
-                        </div>
-                        <div className="fr std_in3">
-                            <canvas className="circles" data-progress="100" data-text="还款中" height="100"
-                            width="100" style={{
-                              height: "50px",
-                              width: "50px",
-                              backgroundColor: "rgb(255, 255, 255)"
-                            }}>
-                            </canvas>
-                        </div>
-                    </a>
-                </div>
-                <div className="std_rate  pt10 pb10 pl20 pr20">
-                    <a href="/wealthCarefree/details?productId=7618" className="block">
-                        <h1 className="ft14 cf mb5 pt5">
-                            <label className="hotSign ft12 fl mr5">
-                                散&nbsp;标
-                            </label>
-                            <label className="fl block wordBreak w90">
-                                C181112002
-                            </label>
-                        </h1>
-                        <div className="fl std_in1">
-                            <p className="ft14 red">
-                                <span className="ft22 saleRate">
-                                    8.50
-                                </span>
-                                %
-                            </p>
-                            <p className="ft12 nocor">
-                                历史年化利率
-                            </p>
-                        </div>
-                        <div className="fl std_in2">
-                            <p className="ft14 line_hgt33 co33">
-                                项目期限90天
-                            </p>
-                            <p className="ft12 nocor">
-                                先息后本
-                            </p>
-                        </div>
-                        <div className="fr std_in3">
-                            <canvas className="circles" data-progress="100" data-text="还款中" height="100"
-                            width="100" style={{
-                              height: "50px",
-                              width: "50px",
-                              backgroundColor: "rgb(255, 255, 255)"
-                            }}>
-                            </canvas>
-                        </div>
-                    </a>
-                </div>
-                <div className="std_rate  pt10 pb10 pl20 pr20">
-                    <a href="/wealthCarefree/details?productId=7617" className="block">
-                        <h1 className="ft14 cf mb5 pt5">
-                            <label className="hotSign ft12 fl mr5">
-                                散&nbsp;标
-                            </label>
-                            <label className="fl block wordBreak w90">
-                                C181112001
-                            </label>
-                        </h1>
-                        <div className="fl std_in1">
-                            <p className="ft14 red">
-                                <span className="ft22 saleRate">
-                                    8.50
-                                </span>
-                                %
-                            </p>
-                            <p className="ft12 nocor">
-                                历史年化利率
-                            </p>
-                        </div>
-                        <div className="fl std_in2">
-                            <p className="ft14 line_hgt33 co33">
-                                项目期限90天
-                            </p>
-                            <p className="ft12 nocor">
-                                先息后本
-                            </p>
-                        </div>
-                        <div className="fr std_in3">
-                            <canvas className="circles" data-progress="100" data-text="还款中" height="100"
-                            width="100" style={{
-                              height: "50px",
-                              width: "50px",
-                              backgroundColor: "rgb(255, 255, 255)"
-                            }}>
-                            </canvas>
-                        </div>
-                    </a>
-                </div>
-                <div className="std_rate  pt10 pb10 pl20 pr20">
-                    <a href="/wealthCarefree/details?productId=7614" className="block">
-                        <h1 className="ft14 cf mb5 pt5">
-                            <label className="hotSign ft12 fl mr5">
-                                散&nbsp;标
-                            </label>
-                            <label className="fl block wordBreak w90">
-                                Q181110001
-                            </label>
-                        </h1>
-                        <div className="fl std_in1">
-                            <p className="ft14 red">
-                                <span className="ft22 saleRate">
-                                    8.50
-                                </span>
-                                %
-                            </p>
-                            <p className="ft12 nocor">
-                                历史年化利率
-                            </p>
-                        </div>
-                        <div className="fl std_in2">
-                            <p className="ft14 line_hgt33 co33">
-                                项目期限90天
-                            </p>
-                            <p className="ft12 nocor">
-                                先息后本
-                            </p>
-                        </div>
-                        <div className="fr std_in3">
-                            <canvas className="circles" data-progress="100" data-text="还款中" height="100"
-                            width="100" style={{
-                              height: "50px",
-                              width: "50px",
-                              backgroundColor: "rgb(255, 255, 255)"
-                            }}>
-                            </canvas>
-                        </div>
-                    </a>
-                </div>
-                <div className="std_rate  pt10 pb10 pl20 pr20">
-                    <a href="/wealthCarefree/details?productId=7613" className="block">
-                        <h1 className="ft14 cf mb5 pt5">
-                            <label className="hotSign ft12 fl mr5">
-                                散&nbsp;标
-                            </label>
-                            <label className="fl block wordBreak w90">
-                                Q181109001
-                            </label>
-                        </h1>
-                        <div className="fl std_in1">
-                            <p className="ft14 red">
-                                <span className="ft22 saleRate">
-                                    8.50
-                                </span>
-                                %
-                            </p>
-                            <p className="ft12 nocor">
-                                历史年化利率
-                            </p>
-                        </div>
-                        <div className="fl std_in2">
-                            <p className="ft14 line_hgt33 co33">
-                                项目期限90天
-                            </p>
-                            <p className="ft12 nocor">
-                                先息后本
-                            </p>
-                        </div>
-                        <div className="fr std_in3">
-                            <canvas className="circles" data-progress="100" data-text="还款中" height="100"
-                            width="100" style={{
-                              height: "50px",
-                              width: "50px",
-                              backgroundColor: "rgb(255, 255, 255)"
-                            }}>
-                            </canvas>
-                        </div>
-                    </a>
-                </div>
-                <div className="std_rate  pt10 pb10 pl20 pr20">
-                    <a href="/wealthCarefree/details?productId=7612" className="block">
-                        <h1 className="ft14 cf mb5 pt5">
-                            <label className="hotSign ft12 fl mr5">
-                                散&nbsp;标
-                            </label>
-                            <label className="fl block wordBreak w90">
-                                Q181108001
-                            </label>
-                        </h1>
-                        <div className="fl std_in1">
-                            <p className="ft14 red">
-                                <span className="ft22 saleRate">
-                                    8.50
-                                </span>
-                                %
-                            </p>
-                            <p className="ft12 nocor">
-                                历史年化利率
-                            </p>
-                        </div>
-                        <div className="fl std_in2">
-                            <p className="ft14 line_hgt33 co33">
-                                项目期限90天
-                            </p>
-                            <p className="ft12 nocor">
-                                先息后本
-                            </p>
-                        </div>
-                        <div className="fr std_in3">
-                            <canvas className="circles" data-progress="100" data-text="还款中" height="100"
-                            width="100" style={{
-                              height: "50px",
-                              width: "50px",
-                              backgroundColor: "rgb(255, 255, 255)"
-                            }}>
-                            </canvas>
-                        </div>
-                    </a>
-                </div>
+                        )
+                })
+            })()}
             </div>
         </div>
         <div className="tc pt10 pb50 grayBg wealthCarefreeBg">

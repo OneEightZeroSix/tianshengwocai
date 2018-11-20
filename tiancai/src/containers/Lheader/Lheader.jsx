@@ -14,16 +14,15 @@ class Lheader extends Component {
   }
   //事件
 
-
   //html
   render() {
     var btnClass = classnames({
         "fixd":true,
-        "cur":this.props.tab_l
+        "cur":!this.props.tab_l
     });
     var btnClass2 = classnames({
         "curt":true,
-        "cur":!this.props.tab_l
+        "cur":this.props.tab_l
     });
     return (
       <div>

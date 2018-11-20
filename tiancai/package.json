@@ -25,7 +25,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "axios": "^0.18.0",
+    "prop-types": "^15.6.2",
     "react-redux": "^5.1.1",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "swiper": "^4.4.2"
   }
 }
