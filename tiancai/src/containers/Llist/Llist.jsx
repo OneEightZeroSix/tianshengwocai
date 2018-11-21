@@ -39,7 +39,10 @@ class Llist extends Component {
   window.onscroll = ()=>{
     var allHeight = document.body.scrollHeight;//body高度
     var seeHeight = window.screen.height;//可视区域高度
-    var notSeeHeight = document.body.scrollTop;//滚动条卷上去的高度
+    var notSeeHeight = document.documentElement.scrollTop;//滚动条卷上去的高度
+    if(!notSeeHeight){
+        notSeeHeight = document.body.scrollTop;
+    }
     if(seeHeight+notSeeHeight==allHeight){
             this.setState({
                 head:this.state.head + 10,
