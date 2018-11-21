@@ -23,17 +23,12 @@ class Llist extends Component {
   }
   loadMore(){
     var self = this;
-    React.axios.get('Llist.json', {
-    params: {
-         
-      }
-    })
+    React.axios.get('Llist.json')
     .then(function (response) {
       var Llist = response.data.Llist.slice(self.state.head,self.state.tail)
       self.setState({
         Llist:self.state.Llist.concat(Llist)
       })
-      // console.log(self.state.Llist)    
     })
     .catch(function (error) {
       console.log(error);
@@ -42,10 +37,10 @@ class Llist extends Component {
 
   componentWillMount() {
   window.onscroll = ()=>{
-    var scrollTop = document.documentElement.scrollTop;
-    var scrollHeight = document.documentElement.scrollHeight;
-    // console.log(clientHeight,scrollTop,scrollHeight);
-    if(scrollHeight-scrollTop==667){
+    var allHeight = document.body.scrollHeight;//body高度
+    var seeHeight = window.screen.height;//可视区域高度
+    var notSeeHeight = document.body.scrollTop;//滚动条卷上去的高度
+    if(seeHeight+notSeeHeight==allHeight){
             this.setState({
                 head:this.state.head + 10,
                 tail:this.state.tail + 10
