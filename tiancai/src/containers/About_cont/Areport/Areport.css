@@ -132,14 +132,14 @@ body {
     line-height: 22px;
     margin-left: 10%;
   }
-  .top{
+  /* .top{
     position: fixed;
     left: 50%;
     margin-left: -10px;
     bottom: 15px;
     -webkit-animation:gogogo 2s infinite linear ;
     z-index: 999;
-  }
+  } */
   .bom{
     max-width: 600px;
     position: fixed;
