@@ -45,19 +45,13 @@ class Swiper extends Component {
         <div className="swiper-container por swiper-container-horizontal"> 
            <a onClick={this.props.toggleSign.bind(this)} className={qClass} >{this.props.qiandao?"签到":"已签到"}</a> 
            <div className="swiper-wrapper"> 
-            <div className="swiper-slide swiper-slide-prev" style={{
-              width: "375px"
-            }}>
+            <div className="swiper-slide swiper-slide-prev">
              <a><img src="http://weixin.51tiancai.com/uploads/7db3bb1ce56d8eb779494be938225ee3.jpg" alt="banner" /></a>
             </div>
-            <div className="swiper-slide swiper-slide-active" style={{
-              width: "375px"
-            }}>
+            <div className="swiper-slide swiper-slide-active">
              <a><img src="http://weixin.51tiancai.com/uploads/6a1c15a93c9e0219f43d23da79b1d606.jpg" alt="banner" /></a>
             </div>
-            <div className="swiper-slide swiper-slide-next" style={{
-              width: "375px"
-            }}>
+            <div className="swiper-slide swiper-slide-next">
              <a><img src="http://weixin.51tiancai.com/uploads/7aee236a6799b976a86fc91c08247727.jpg" alt="banner" /></a>
             </div>
            </div> 

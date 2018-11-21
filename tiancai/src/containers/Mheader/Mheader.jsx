@@ -11,11 +11,40 @@ class Mheader extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            isShow: true,
+            assets: {
+                total_assets: "3100.00",
+                profit: "200.00",
+                locking: "1000.00",
+                usable: "2100.00",
+            }
         };
     }
     //事件
+    eyeClick() {
+        if (this.state.isShow) {
+            this.setState({
+                isShow: !this.state.isShow,
+                assets: {
+                    total_assets: "******",
+                    profit: "****",
+                    locking: "****",
+                    usable: "****"
+                }
+            })
+        }else if(!this.state.isShow){
+            this.setState({
+                isShow: !this.state.isShow,
+                assets: {
+                    total_assets: "3100.00",
+                    profit: "200.00",
+                    locking: "1000.00",
+                    usable: "2100.00",
+                }
+            })
+        }
 
+    }
     //html
     render() {
         return (
@@ -31,7 +60,7 @@ class Mheader extends Component {
                     </div>
                     <h1 className="tc">
                         <div className="amount_wrap mb5">
-                            <span className="ft30 sum_amount">0.00</span><span className="ft36 amount_eyes"><i className="eyes_open" id="eyes"></i></span>
+                            <span className="ft30 sum_amount">{this.state.assets.total_assets}</span><span className="ft36 amount_eyes" onClick={this.eyeClick.bind(this)}><i className={this.state.isShow ? "eyes_open" : "eyes_close"} id="eyes"></i></span>
                         </div>
                         <label className="ft14 co33 zzc">
                             账户总资产(元)<span className="cumulativeWrap1"><i className="quesClick"></i></span>
@@ -40,17 +69,17 @@ class Mheader extends Component {
                     </h1>
                     <p className="poa">
                         <label className="invite tl fl ft14">
-                            <span className="ft14 mt5">累计收益(元) <label className="co33 total_invest">0.00</label></span><span className="cumulativeWrap2"><i className="quesClick"></i></span>
+                            <span className="ft14 mt5">累计收益(元) <label className="co33 total_invest">{this.state.assets.profit}</label></span><span className="cumulativeWrap2"><i className="quesClick"></i></span>
                         </label>
                         <label className="record tr fr ft14">
-                            锁定中资产(元) <span className="ft14 co33 current_limit">0.00</span><span className="cumulativeWrap"><i className="quesClick"></i></span>
+                            锁定中资产(元) <span className="ft14 co33 current_limit">{this.state.assets.locking}</span><span className="cumulativeWrap"><i className="quesClick"></i></span>
                         </label>
                     </p>
                 </div >
                 <div className="info_wra tc operation_wrap">
                     <div className="fl">
                         <p className="ft14 pt10 pl15 co55"><label className="w120">我的可用余额(元)</label></p>
-                        <p><span className="ft15 co33 account_amount">0.00</span></p>
+                        <p><span className="ft15 co33 account_amount">{this.state.assets.usable}</span></p>
                     </div>
                     <div className="fr operation">
                         <Link to="" className="co33 ft15" title="提现">提现</Link>

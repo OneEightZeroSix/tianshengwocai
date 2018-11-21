@@ -3,29 +3,26 @@ import ReactDOM from 'react-dom';
 
 
 //classnames库
-import classnames from 'classnames'
+// import classnames from 'classnames'
 
 //状态管理
-import {Provider, connect} from 'react-redux';
+import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 //引入路由
-import { HashRouter as Router, Route} from "react-router-dom";
+import { HashRouter as Router, Route,Redirect,Switch} from "react-router-dom";
 //使用withRouter
-import PropTypes from "prop-types";
-import { withRouter } from "react-router";
+// import PropTypes from "prop-types";
+// import { withRouter } from "react-router";
 
 import './index.css';
 import './assets/common.css';
 import './assets/index.css';
 import * as serviceWorker from './serviceWorker';
 //引入页面组件
-import Home from './pages/Home/Home.jsx';
-import Lend from './pages/Lend/Lend.jsx';
+import Talent from './pages/Talent/Talent.jsx';
 import Sign from './pages/Sign/Sign.jsx';
-import Service from './pages/Service/Service.jsx';
-import Mine from './pages/Mine/Mine.jsx';
+import About from './pages/About/About.jsx';
 
-import Footer from './containers/Footer/Footer.jsx'
 //axio
 import axios from 'axios';
 React.axios = axios
@@ -56,17 +53,17 @@ const store = createStore(function(state = {
   }
 );
 
-
 ReactDOM.render(
 	<Provider store={store}>
 		<Router>
 			<div>
-			 	<Route path="/home/"  component={Home} />
-			 	<Route path="/Lend/"  component={Lend} />
-		      	<Route path="/Sign/"  component={Sign} />
-				<Route path="/service" component={Service} />
-				<Route path="/mine" component={Mine} />
-				<Footer />
+				<Switch>
+					<Route path='/talent' component={Talent} />
+					<Route path="/sign"  component={Sign} />
+					<Route path='/about' component={About} />
+					<Redirect from="/" to="/talent/home" />
+					{/* <Route path="/" render={()=><Redirect to="/home" />} /> */}
+				</Switch>
 			</div>
 		</Router>
 	</Provider>

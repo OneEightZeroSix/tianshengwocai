@@ -14,6 +14,7 @@ import Introduction from '../../containers/Introduction/Introduction.jsx';
 class Home extends Component {
   //数据
   constructor(props) {
+    
     super(props);
     this.state = {
        

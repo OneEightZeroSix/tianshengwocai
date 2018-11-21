@@ -5,44 +5,60 @@ import './Footer.css';
 class Footer extends Component {
   //数据
   constructor(props) {
+    
     super(props);
     this.state = {
       nav:0,
        navs:[{
         title:"首页",
         className:"idx",
-        link:"/home",
+        link:"/talent/home",
         iconName:"index_icon",
         icon_yel:"index_yel",
         qty:0
        },{
         title:"出借",
         className:"ivst",
-        link:"/Lend",
+        link:"/talent/Lend",
         iconName:"invest_icon",
         icon_yel:"invest_yel",
         qty:0
        },{
         title:"服务",
         className:"sev",
-        link:"/service",
+        link:"/talent/service",
         iconName:"serve_icon",
         icon_yel:"serve_yel",
         qty:0
        },{
         title:"我的",
         className:"idx",
-        link:"/mine",
+        link:"/talent/mine",
         iconName:"home_icon",
         icon_yel:"home_yel",
         qty:2
        }]
+    }
+    switch(window.location.hash.slice(9)){
+      case "home":
+      this.state.nav=0
+      break;
+      case "Lend":
+      this.state.nav=1
+      break;
+      case "service":
+      this.state.nav=2
+      break;
+      case "mine":
+      this.state.nav=3
+      break;
     }
   }
     tabClick(index){
       this.setState({
         nav:index
       })
+      
     }
   //事件
 

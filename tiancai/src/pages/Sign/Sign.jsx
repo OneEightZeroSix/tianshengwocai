@@ -3,7 +3,15 @@ import React, { Component } from 'react';
 import './Sign.css';
 
 //引入子组件
+
 class Sign extends Component {
+	constructor(props) {
+		console.log(props.location.pathname)
+		super(props);
+		this.state = {
+		   
+		};
+	  }
   render() {
     return (
        		<div>
