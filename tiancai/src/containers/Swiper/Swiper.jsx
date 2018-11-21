@@ -56,7 +56,7 @@ class Swiper extends Component {
             </div>
            </div> 
            <div className="swiper-pagination"></div>
-           <img src="/tiancaibao/pages/index/images/advert_tip.png" alt="" className="advert" /> 
+           <img src="http://weixin.51tiancai.com/tiancaibao/pages/index/images/advert_tip.png" alt="" className="advert" /> 
         </div>
     );
   }

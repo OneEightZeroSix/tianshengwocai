@@ -34,9 +34,7 @@ class Llist extends Component {
       console.log(error);
     });
   }
-
-  componentWillMount() {
-  window.onscroll = ()=>{
+  onscroll(){
     var allHeight = document.body.scrollHeight;//body高度
     var seeHeight = window.screen.height;//可视区域高度
     var notSeeHeight = document.documentElement.scrollTop;//滚动条卷上去的高度
@@ -50,15 +48,37 @@ class Llist extends Component {
             });
             this.loadMore()
         }
+       return;
     }
-}
+
+//   componentWillMount() {
+//   window.onscroll = ()=>{
+//     var allHeight = document.body.scrollHeight;//body高度
+//     var seeHeight = window.screen.height;//可视区域高度
+//     var notSeeHeight = document.documentElement.scrollTop;//滚动条卷上去的高度
+//     if(!notSeeHeight){
+//         notSeeHeight = document.body.scrollTop;
+//     }
+//     if(seeHeight+notSeeHeight==allHeight){
+//             this.setState({
+//                 head:this.state.head + 10,
+//                 tail:this.state.tail + 10
+//             });
+//             this.loadMore()
+//         }
+//     }
+// }
 
   componentDidMount(){
+      window.addEventListener("scroll",this.onscroll.bind(this));
+ 
       this.loadMore()
   }
 
   componentWillUnmount(){
-      
+    // let audio = this.refs.audio;
+    window.removeEventListener('scroll',this.onscroll.bind(this));
+    // audio.removeEventListener('ended');   
   }
 
   //html

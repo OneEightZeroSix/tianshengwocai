@@ -6,10 +6,10 @@ import ReactDOM from 'react-dom';
 // import classnames from 'classnames'
 
 //状态管理
-import {Provider} from 'react-redux';
-import {createStore} from 'redux';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 //引入路由
-import { HashRouter as Router, Route,Redirect,Switch} from "react-router-dom";
+import { HashRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 //使用withRouter
 // import PropTypes from "prop-types";
 // import { withRouter } from "react-router";
@@ -27,44 +27,49 @@ import About from './pages/About/About.jsx';
 import axios from 'axios';
 React.axios = axios
 //创建仓库
-const store = createStore(function(state = {
-  	tab_l:false,
-    sign_s:false,
-    sign_t:true,
-    sign_p:true,
-    qiandao:true
+const store = createStore(function (state = {
+	tab_l: false,
+	sign_s: false,
+	sign_t: true,
+	sign_p: true,
+	qiandao: true
+
+	
 }, action) {
-  		switch(action.type){
-  			case 'toggleTab':
-  			return {
-            ...state,
-            tab_l:action.tab_l
-        }
-        case 'toggleSign':
-  			return {
-            ...state,
-            sign_s:action.sign_s,
-            sign_t:action.sign_t,
-            qiandao:action.qiandao
-        }
-  			default:
-        	return state          
-  		}
-  }
+	switch (action.type) {
+		case 'toggleTab':
+			return {
+				...state,
+				tab_l: action.tab_l
+			}
+		case 'toggleSign':
+			return {
+				...state,
+				sign_s: action.sign_s,
+				sign_t: action.sign_t,
+				qiandao: action.qiandao
+			}
+		case 'setNav':
+			return {
+				...state,
+				footNav:action.footNav
+			}
+		default:
+			return state
+	}
+}
 );
 
 ReactDOM.render(
 	<Provider store={store}>
 		<Router>
-			<div>
 				<Switch>
 					<Route path='/talent' component={Talent} />
-					<Route path="/sign"  component={Sign} />
+					<Route path="/sign" component={Sign} />
 					<Route path='/about' component={About} />
 					<Redirect from="/" to="/talent/home" />
 					{/* <Route path="/" render={()=><Redirect to="/home" />} /> */}
 				</Switch>
-			</div>
 		</Router>
 	</Provider>
 	, document.getElementById('root'));
