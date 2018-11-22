@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import './Llist.css';
+import ReactDOM from 'react-dom';
+//swiper
+import Swipers from 'swiper/dist/js/swiper.js'
+import 'swiper/dist/css/swiper.min.css'
 //classNames库
 import classnames from 'classnames'
 //链接仓库
@@ -16,11 +20,6 @@ class Llist extends Component {
     };
   }
   //事件
-  toggle(){
-    this.setState({
-       
-    })
-  }
   loadMore(){
     var self = this;
     React.axios.get('Llist.json')
@@ -34,51 +33,101 @@ class Llist extends Component {
       console.log(error);
     });
   }
-  onscroll(){
-    var allHeight = document.body.scrollHeight;//body高度
-    var seeHeight = window.screen.height;//可视区域高度
-    var notSeeHeight = document.documentElement.scrollTop;//滚动条卷上去的高度
-    if(!notSeeHeight){
-        notSeeHeight = document.body.scrollTop;
-    }
-    if(seeHeight+notSeeHeight==allHeight){
-            this.setState({
-                head:this.state.head + 10,
-                tail:this.state.tail + 10
-            });
-            this.loadMore()
+  goProgress(){
+            var canvas = document.querySelector('.circles'),  //获取canvas元素         
+            context = canvas.getContext('2d'),  //获取画图环境，指明为2d
+            centerX = canvas.width/2,   //Canvas中心点x轴坐标
+            centerY = canvas.height/2,  //Canvas中心点y轴坐标
+            rad = Math.PI*2/100, //将360度分成100份，那么每一份就是rad度
+            speed = 0.1; //加载的快慢就靠它了 
+        //绘制蓝色外圈
+        function blueCircle(n){
+            context.save();
+            context.strokeStyle = "orange"; //设置描边样式
+            context.lineWidth = 2; //设置线宽
+            context.beginPath(); //路径开始
+            context.arc(centerX, centerY, 24 , -Math.PI/2, -Math.PI/2 +n*rad, false); //用于绘制圆弧context.arc(x坐标，y坐标，半径，起始角度，终止角度，顺时针/逆时针)
+            context.stroke(); //绘制
+            context.closePath(); //路径结束
+            context.restore();
         }
-       return;
-    }
+        //绘制白色外圈
+        function whiteCircle(){
+            context.save();
+            context.beginPath();
+            context.strokeStyle = "#ccc";
+            context.arc(centerX, centerY, 24 , 0, Math.PI*2, false);
+            context.stroke();
+            context.closePath();
+            context.restore();
+        }  
+        //百分比文字绘制
+        function text(n){
+            context.save(); //save和restore可以保证样式属性只运用于该段canvas元素
+            context.strokeStyle = "#ccc"; //设置描边样式
+            context.font = "12px Arial"; //设置字体大小和字体
+            //绘制字体，并且指定位置
+            context.strokeText(n.toFixed(0)+"%", centerX-13, centerY+5);
+            context.stroke(); //执行绘制
+            context.restore();
+        } 
+        //动画循环
+        (function drawFrame(){
+            window.requestAnimationFrame(drawFrame, canvas);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            whiteCircle();
+            text(speed);
+            blueCircle(speed);
+            if(speed >= 100) speed = 99;
+            speed += 1;
+        }());
+  }
+  //swiper
+  gundong(){
+    var mySwiper = new Swipers('.swiper_z', {
+          autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+          },         
+         loop:true,
+         slidesPerView : "auto",
+         autoHeight:true,
+         // setWrapperSize :true,
+         direction : 'vertical',
+      })
+  }
 
-//   componentWillMount() {
-//   window.onscroll = ()=>{
-//     var allHeight = document.body.scrollHeight;//body高度
-//     var seeHeight = window.screen.height;//可视区域高度
-//     var notSeeHeight = document.documentElement.scrollTop;//滚动条卷上去的高度
-//     if(!notSeeHeight){
-//         notSeeHeight = document.body.scrollTop;
-//     }
-//     if(seeHeight+notSeeHeight==allHeight){
-//             this.setState({
-//                 head:this.state.head + 10,
-//                 tail:this.state.tail + 10
-//             });
-//             this.loadMore()
-//         }
-//     }
-// }
+
+  componentWillMount() {
+      window.onscroll = ()=>{
+        var allHeight = document.body.scrollHeight;//body高度
+        var seeHeight = window.screen.height;//可视区域高度
+        var notSeeHeight = document.documentElement.scrollTop;//滚动条卷上去的高度
+        if(!notSeeHeight){
+            notSeeHeight = document.body.scrollTop;
+        }
+        if(seeHeight+notSeeHeight==allHeight){
+                this.setState({
+                    head:this.state.head + 10,
+                    tail:this.state.tail + 10
+                });
+                this.loadMore()
+            }
+        }
+}
 
   componentDidMount(){
-      window.addEventListener("scroll",this.onscroll.bind(this));
- 
-      this.loadMore()
+      this.loadMore();
+      
+  }
+  componentDidUpdate(){
+     this.goProgress();
+     this.gundong()    
+     // console.log(document.querySelector('.circles'))
   }
 
   componentWillUnmount(){
-    // let audio = this.refs.audio;
-    window.removeEventListener('scroll',this.onscroll.bind(this));
-    // audio.removeEventListener('ended');   
+      
   }
 
   //html
@@ -101,7 +150,7 @@ class Llist extends Component {
             <div className="calendar_item">
             {(()=>{
                 return this.state.Llist.map((item,index)=>{
-                    return(
+                    return(    
                     <div key={index} className="std_rate  pt10 pb10 pl20 pr20">
                     <a  className="block">
                         <h1 className="ft14 cf mb5 pt5">
@@ -132,8 +181,8 @@ class Llist extends Component {
                             </p>
                         </div>
                         <div className="fr std_in3">
-                            <canvas className="circles" data-progress="17.672413793103" data-text="募集中"
-                            height="100" width="100" style={{
+                            <canvas ref="progress" className="circles" data-progress="17.672413793103" data-text="募集中"
+                            height="50" width="50" style={{
                               height: "50px",
                               width: "50px",
                               backgroundColor: "rgb(255, 255, 255)"
@@ -143,7 +192,8 @@ class Llist extends Component {
                     </a>
                 </div>
                         )
-                })
+                });
+                console.log(document.querySelectorAll(".circles"))
             })()}
             </div>
         </div>
@@ -153,7 +203,7 @@ class Llist extends Component {
     </article>
     <article id="opacities" className={
        artClass2
-    } onClick={this.toggle.bind(this)}>
+    }>
         <div className="instruction">
             <h2 className="tc ft15 coff5 pt15">
                 债转规则说明
@@ -261,9 +311,9 @@ class Llist extends Component {
                     借款金额
                 </span>
             </div>
-            <div className="list">
-                <ul style={{marginTop: "0px"}}>
-                    <li>
+            <div className="list swiper_z swiper-no-swiping">
+                <ul style={{marginTop: "0px"}} className="swiper-wrapper">
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -279,7 +329,7 @@ class Llist extends Component {
                             32400元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -295,7 +345,7 @@ class Llist extends Component {
                             32400元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -311,7 +361,7 @@ class Llist extends Component {
                             32400元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -327,7 +377,7 @@ class Llist extends Component {
                             31000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -343,7 +393,7 @@ class Llist extends Component {
                             30900元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -359,7 +409,7 @@ class Llist extends Component {
                             29800元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -375,7 +425,7 @@ class Llist extends Component {
                             28600元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -391,7 +441,7 @@ class Llist extends Component {
                             28200元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -407,7 +457,7 @@ class Llist extends Component {
                             24400元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -423,7 +473,7 @@ class Llist extends Component {
                             19900元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -439,7 +489,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -455,7 +505,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -471,7 +521,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -487,7 +537,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -503,7 +553,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -519,7 +569,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -535,7 +585,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -551,7 +601,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -567,7 +617,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -583,7 +633,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -599,7 +649,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -615,7 +665,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -631,7 +681,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -647,7 +697,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -663,7 +713,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -679,7 +729,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -695,7 +745,7 @@ class Llist extends Component {
                             20000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -711,7 +761,7 @@ class Llist extends Component {
                             20000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -727,7 +777,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -743,7 +793,7 @@ class Llist extends Component {
                             10000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -759,7 +809,7 @@ class Llist extends Component {
                             30000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -775,7 +825,7 @@ class Llist extends Component {
                             30000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -791,7 +841,7 @@ class Llist extends Component {
                             30000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -807,7 +857,7 @@ class Llist extends Component {
                             50000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -823,7 +873,7 @@ class Llist extends Component {
                             30000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -839,7 +889,7 @@ class Llist extends Component {
                             30000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -855,7 +905,7 @@ class Llist extends Component {
                             50000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -871,7 +921,7 @@ class Llist extends Component {
                             37800元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -887,7 +937,7 @@ class Llist extends Component {
                             36400元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -903,7 +953,7 @@ class Llist extends Component {
                             36300元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -919,7 +969,7 @@ class Llist extends Component {
                             36100元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -935,7 +985,7 @@ class Llist extends Component {
                             34500元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -951,7 +1001,7 @@ class Llist extends Component {
                             33600元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -967,7 +1017,7 @@ class Llist extends Component {
                             33200元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -983,7 +1033,7 @@ class Llist extends Component {
                             32100元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -999,7 +1049,7 @@ class Llist extends Component {
                             31700元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1015,7 +1065,7 @@ class Llist extends Component {
                             31500元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1031,7 +1081,7 @@ class Llist extends Component {
                             31400元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1047,7 +1097,7 @@ class Llist extends Component {
                             31100元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1063,7 +1113,7 @@ class Llist extends Component {
                             30900元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1079,7 +1129,7 @@ class Llist extends Component {
                             29600元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1095,7 +1145,7 @@ class Llist extends Component {
                             29400元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1111,7 +1161,7 @@ class Llist extends Component {
                             29000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1127,7 +1177,7 @@ class Llist extends Component {
                             28600元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1143,7 +1193,7 @@ class Llist extends Component {
                             27700元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1159,7 +1209,7 @@ class Llist extends Component {
                             27500元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1175,7 +1225,7 @@ class Llist extends Component {
                             27100元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1191,7 +1241,7 @@ class Llist extends Component {
                             25300元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1207,7 +1257,7 @@ class Llist extends Component {
                             22500元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1223,7 +1273,7 @@ class Llist extends Component {
                             22500元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1239,7 +1289,7 @@ class Llist extends Component {
                             22200元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1255,7 +1305,7 @@ class Llist extends Component {
                             20400元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1271,7 +1321,7 @@ class Llist extends Component {
                             19600元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1287,7 +1337,7 @@ class Llist extends Component {
                             18900元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1303,7 +1353,7 @@ class Llist extends Component {
                             18900元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1319,7 +1369,7 @@ class Llist extends Component {
                             18600元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1335,7 +1385,7 @@ class Llist extends Component {
                             18200元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1351,7 +1401,7 @@ class Llist extends Component {
                             17900元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1367,7 +1417,7 @@ class Llist extends Component {
                             17200元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1383,7 +1433,7 @@ class Llist extends Component {
                             17100元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1399,7 +1449,7 @@ class Llist extends Component {
                             15700元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1415,7 +1465,7 @@ class Llist extends Component {
                             14100元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1431,7 +1481,7 @@ class Llist extends Component {
                             13400元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1447,7 +1497,7 @@ class Llist extends Component {
                             12700元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1463,7 +1513,7 @@ class Llist extends Component {
                             12500元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1479,7 +1529,7 @@ class Llist extends Component {
                             11500元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1495,7 +1545,7 @@ class Llist extends Component {
                             37400元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1511,7 +1561,7 @@ class Llist extends Component {
                             36800元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1527,7 +1577,7 @@ class Llist extends Component {
                             36600元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1543,7 +1593,7 @@ class Llist extends Component {
                             35900元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1559,7 +1609,7 @@ class Llist extends Component {
                             35900元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1575,7 +1625,7 @@ class Llist extends Component {
                             35900元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1591,7 +1641,7 @@ class Llist extends Component {
                             35300元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1607,7 +1657,7 @@ class Llist extends Component {
                             35300元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1623,7 +1673,7 @@ class Llist extends Component {
                             35000元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1639,7 +1689,7 @@ class Llist extends Component {
                             34900元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1655,7 +1705,7 @@ class Llist extends Component {
                             34800元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1671,7 +1721,7 @@ class Llist extends Component {
                             34700元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1687,7 +1737,7 @@ class Llist extends Component {
                             34300元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1703,7 +1753,7 @@ class Llist extends Component {
                             34300元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1719,7 +1769,7 @@ class Llist extends Component {
                             34300元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1735,7 +1785,7 @@ class Llist extends Component {
                             34300元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1751,7 +1801,7 @@ class Llist extends Component {
                             34300元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1767,7 +1817,7 @@ class Llist extends Component {
                             34300元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1783,7 +1833,7 @@ class Llist extends Component {
                             33900元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1799,7 +1849,7 @@ class Llist extends Component {
                             33600元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1815,7 +1865,7 @@ class Llist extends Component {
                             32900元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1831,7 +1881,7 @@ class Llist extends Component {
                             32900元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
@@ -1847,7 +1897,7 @@ class Llist extends Component {
                             32900元
                         </span>
                     </li>
-                    <li>
+                    <li className="swiper-slide">
                         <i>
                         </i>
                         <span className="num1">
