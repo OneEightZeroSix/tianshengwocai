@@ -311,7 +311,7 @@ class Llist extends Component {
                     借款金额
                 </span>
             </div>
-            <div className="list swiper_z swiper-no-swiping">
+            <div className="list_l swiper_z swiper-no-swiping">
                 <ul style={{marginTop: "0px"}} className="swiper-wrapper">
                     <li className="swiper-slide">
                         <i>

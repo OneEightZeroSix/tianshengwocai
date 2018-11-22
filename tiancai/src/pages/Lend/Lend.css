@@ -201,7 +201,7 @@ a.bgred:hover,a.bgred:active,a.bgred:link{
   border-radius:5px;
   margin-top: -9px;
   padding-bottom: 26px;
-  margin-bottom: 54px;
+ /* margin-bottom: 54px;*/
 }
 .infro>h2{
   line-height: 44px;
@@ -216,11 +216,12 @@ a.bgred:hover,a.bgred:active,a.bgred:link{
   -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
 }
-.infro .list{
+.infro .list_l{
   width:100%;
   height: 180px;
   margin:0 auto;
   overflow: hidden;
+  margin-bottom: 29px;
 }
 .infro ul{
   width:90%;
@@ -258,7 +259,7 @@ a.bgred:hover,a.bgred:active,a.bgred:link{
   color: #333943;
   text-align: center;
 }
-.infro .list span{
+.infro .list_l span{
   font-weight: normal;
   color:#556677;
 }
