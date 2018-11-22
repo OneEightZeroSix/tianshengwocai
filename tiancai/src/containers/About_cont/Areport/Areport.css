@@ -365,14 +365,14 @@ body {
     border-bottom:1px solid #ecedf1;
     overflow: hidden;
   }
-  .wrap_all ul li a {
+  .wrap_alls ul li a {
     display: block;
     padding: 0 15px;
     line-height: 48px;
     color: #333943;
     overflow: hidden;
   }
-  .wrap_all ul li a:after {
+  .wrap_alls ul li a:after {
     content: '';
     display: block;
     position: absolute;

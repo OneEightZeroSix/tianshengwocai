@@ -180,7 +180,7 @@ class Aassessment extends Component {
                             </div>
                         </div>
                     </div>
-                    <a href="javascript:;" className="submit ft16">提交</a>
+                    <a href="javascript:;" className="submit ft16 assessment">提交</a>
                 </form>
             </section>
         );

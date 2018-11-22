@@ -32,10 +32,17 @@ const store = createStore(function (state = {
 	sign_s: false,
 	sign_t: true,
 	sign_p: true,
-	qiandao: true
-
+	qiandao: true,
+	isSign:"false"
 	
 }, action) {
+	var cookies = document.cookie;
+	if(cookies!=""){
+		return {
+			...state,
+			isSign:"true"
+		}
+	}
 	switch (action.type) {
 		case 'toggleTab':
 			return {
@@ -53,6 +60,11 @@ const store = createStore(function (state = {
 			return {
 				...state,
 				footNav:action.footNav
+			}
+		case 'cookieState':
+			return {
+				...state,
+				isSign:action.isSign
 			}
 		default:
 			return state
