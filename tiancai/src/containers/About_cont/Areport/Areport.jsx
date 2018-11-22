@@ -5,7 +5,7 @@ import './Areport.css';
 class Areport extends Component {
     render() {
         return (
-            <div className="wrap_all">
+            <div className="wrap_alls">
                 <ul>
                     <li><a href="/report/eighteen-october-report" className="por">2018年十月月报</a></li>
                     <li><a href="/report/eighteen-september-report" className="por">2018年九月月报</a></li>

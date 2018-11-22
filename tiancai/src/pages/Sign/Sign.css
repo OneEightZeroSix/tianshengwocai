@@ -27,12 +27,12 @@
   padding-left: 5px;
   font-family: normal;
 }
-.apy_list .item {
+/* .apy_list .item {
   padding: 0 15px;
   line-height: 44px;
   background: #fff;
   position: relative;
-}
+} */
 .apy_list .item .label_l {
   display: inline-block;
   min-width: 17px;

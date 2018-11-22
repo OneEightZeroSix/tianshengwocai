@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
+import {connect} from 'react-redux';
+
 import './Footer.css';
 
 class Footer extends Component {
@@ -8,6 +10,8 @@ class Footer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // isSign:"false",
+      signUrl:"/sign",
       footNav:0,
       footNavs: [{
         title: "首页",
@@ -60,6 +64,9 @@ class Footer extends Component {
       this.setState({
         footNav:index
       })
+      if(index==3){
+        this.hasCookie()
+      }
     }
 
   // componentWillMount(){
@@ -69,19 +76,16 @@ class Footer extends Component {
   // }
   componentWillMount(){
     // this.checkRoute();
-    window.addEventListener("window.location",this.checkRoute())
-
+    window.addEventListener("window.location",this.checkRoute());
   }
     checkRoute()  {
       switch(window.location.hash.slice(1)){
         case "/talent/home":
-        console.log(123);
           this.setState({
             footNav:0
           })
         break;
         case "/talent/lend":
-        console.log(456)
           this.setState({
             footNav:1
           })
@@ -98,6 +102,12 @@ class Footer extends Component {
         break;
       }
     }
+    hasCookie(){
+      var cookies = document.cookie;
+      if(cookies!=""){
+        this.props.cookieState();
+      }
+    }
 
   //html
   render() {
@@ -108,7 +118,7 @@ class Footer extends Component {
               {(()=>{
                 return (this.state.footNavs.map((item,index)=>{
                   return (
-                    <li onClick={this.tabClick.bind(this,index)} className={`${item.className}`} key={index}> <Link  to={ {pathname:`${item.link}` }}  replace >
+                    <li onClick={this.tabClick.bind(this,index)} className={`${item.className}`} key={index}> <Link  to={this.props.isSign=="false"&&index==3?this.state.signUrl:{pathname:`${item.link}` }}  replace >
                     {/* to={ {pathname:`${item.link}`} repalce */}
                     {(()=>{
                       if(item.qty > 0){
@@ -129,4 +139,15 @@ class Footer extends Component {
   }
 }
 
-export default Footer;
+export default connect((state)=>{
+  return state
+},(dispatch)=>{
+  return {
+    cookieState(){
+      dispatch({
+        type:"cookieState",
+        isSign:"true"
+      })
+    }
+  }
+})(Footer);
