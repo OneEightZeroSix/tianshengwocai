@@ -81,7 +81,7 @@ class Footer extends Component {
           })
         break;
         case "/talent/lend":
-        console.log(456)
+        // console.log(456)
           this.setState({
             footNav:1
           })
