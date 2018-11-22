@@ -9,11 +9,15 @@ class Lheader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-       
+       informNav:true
     };
   }
   //事件
-
+  toggleInform(){
+      this.setState({
+          informNav:!this.state.informNav
+      })
+  }
   //html
   render() {
     var btnClass = classnames({
@@ -24,6 +28,14 @@ class Lheader extends Component {
         "curt":true,
         "cur":this.props.tab_l
     });
+    var informBtn = classnames({
+        "switch":true,
+        "active":!this.state.informNav
+    });
+    var informP = classnames({
+        "txind":true,
+        "hide":this.state.informNav
+    })
     return (
       <div>
         <header className="header tc">
@@ -39,8 +51,8 @@ class Lheader extends Component {
             <h2>
                 出借人适当性管理告知
             </h2>
-            <img src="http://weixin.51tiancai.com/tiancaibao/pages/invest/images/icon.png" className="switch" />
-            <p className="hide txind">
+            <img src="http://weixin.51tiancai.com/tiancaibao/pages/invest/images/icon.png" className={informBtn} onClick={this.toggleInform.bind(this)}/>
+            <p className={informP}>
                 作为网络借贷的出借人，应当具备投资风险意识，风险识别能力，拥有非保本类金融产品投资经验并熟悉互联网金融。请您在出借前，确保了解借款项目的主要风险，同时确认具有相应的风险认知和承受能力，并自行承担出借可能产生的相关损失。
             </p>
         </div>

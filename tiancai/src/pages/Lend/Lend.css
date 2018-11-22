@@ -7,7 +7,7 @@
   padding-bottom: 50px;
 }
 .txind{
-	text-indent: 24px;
+  text-indent: 24px;
 }
 .nav_head{
   width: 100%;
@@ -26,7 +26,7 @@
   font-size: 16px;
 }
 .corB{
-	color:#1ec0ff;
+  color:#1ec0ff;
 }
 /*.nav_head a.cur:after{*/
   /*display: block;*/
@@ -131,15 +131,15 @@ a.bgred:hover,a.bgred:active,a.bgred:link{
   position: relative;
 }
 .instruction{
-	width:100%;
-	height: 168px;
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/instruction.png") no-repeat center;
-	background-size: 100% 100%;
-	border-radius:5px;
+  width:100%;
+  height: 168px;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/instruction.png") no-repeat center;
+  background-size: 100% 100%;
+  border-radius:5px;
 }
 .instruction p{
-	width:80%;
-	margin-left: 10%;
+  width:80%;
+  margin-left: 10%;
 }
 .content_t {
   width: 100%;
@@ -148,27 +148,27 @@ a.bgred:hover,a.bgred:active,a.bgred:link{
   overflow: hidden;
 }
 .ins{
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/white_bg.png") no-repeat center;
-	background-size: 100% 100%;
-	border-radius:5px;
-	padding:15px;
-	position: relative;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/white_bg.png") no-repeat center;
+  background-size: 100% 100%;
+  border-radius:5px;
+  padding:15px;
+  position: relative;
 }
 .ins h2{
-	height: 22px;
-	line-height: 22px;
-	padding-bottom: 5px;
-	text-indent: 5px;
+  height: 22px;
+  line-height: 22px;
+  padding-bottom: 5px;
+  text-indent: 5px;
 }
 .ins>a>div{
-	overflow: hidden;
-	margin: 5px 0;
+  overflow: hidden;
+  margin: 5px 0;
 }
 .ins>a>div>div{
-	width:40%;
+  width:40%;
 }
 .hotSign{
-	color: #FFFFFF;
+  color: #FFFFFF;
     background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#ff7568), to(#fea679));
     background: -moz-linear-gradient(left, #ff7568, #fea679);
     background: -o-linear-gradient(left, #ff7568, #fea679);
@@ -179,93 +179,95 @@ a.bgred:hover,a.bgred:active,a.bgred:link{
     font-size: 12px;
 }
 .ins>div{
-	width:90px;
-	height: 32px;
+  width:90px;
+  height: 32px;
     position: absolute;
     top:58px;
     right:15px;
-    text-align: center;	
+    text-align: center; 
 }
 .ins>div>a{
-	display: block;
-	width:100%;
-	height: 32px;
-	line-height: 32px;
-	border-radius:20px;
-	margin:0 auto;
-	background: #ffe200;
+  display: block;
+  width:100%;
+  height: 32px;
+  line-height: 32px;
+  border-radius:20px;
+  margin:0 auto;
+  background: #ffe200;
 }
 .infro{
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/white_bg.png") no-repeat center;
-	background-size: 100% 100%;
-	border-radius:5px;
-	margin-top: -9px;
-	padding-bottom: 26px;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/white_bg.png") no-repeat center;
+  background-size: 100% 100%;
+  border-radius:5px;
+  margin-top: -9px;
+  padding-bottom: 26px;
+ /* margin-bottom: 54px;*/
 }
 .infro>h2{
-	line-height: 44px;
-	padding-top: 15px;
+  line-height: 44px;
+  padding-top: 15px;
 }
 .title{
-	border:1px solid #ececec;
-	width:90%;
-	height:35px;
-	margin:0 auto;
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-  	-moz-box-sizing: border-box;
+  border:1px solid #ececec;
+  width:90%;
+  height:35px;
+  margin:0 auto;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
-.infro .list{
-	width:100%;
-	height: 180px;
-	margin:0 auto;
-	overflow: hidden;
+.infro .list_l{
+  width:100%;
+  height: 180px;
+  margin:0 auto;
+  overflow: hidden;
+  margin-bottom: 29px;
 }
 .infro ul{
-	width:90%;
-	margin:0 auto;
-	height: 180px;
+  width:90%;
+  margin:0 auto;
+  height: 180px;
 }
 .title>span{
-	display: inline-block;
-	font-size: 12px;
-	line-height: 35px;
-	font-weight: bold;
-	color: #333943;
-	text-align: center;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 35px;
+  font-weight: bold;
+  color: #333943;
+  text-align: center;
 }
 .infro ul li{
-	border-bottom: 1px solid #ececec;
-	border-left:1px solid #ececec;
-	border-right:1px solid #ececec;
-	position: relative;
+  border-bottom: 1px solid #ececec;
+  border-left:1px solid #ececec;
+  border-right:1px solid #ececec;
+  position: relative;
 }
 .infro ul li i{
-	position: absolute;
-	width:4px;
-	height: 4px;
-	border-radius:50%;
-	top:14px;
-	left:10px;
-	background: #ff5f33;
+  position: absolute;
+  width:4px;
+  height: 4px;
+  border-radius:50%;
+  top:14px;
+  left:10px;
+  background: #ff5f33;
 }
 .infro ul span{
-	display: inline-block;
-	font-size: 12px;
-	line-height: 35px;
-	font-weight: bold;
-	color: #333943;
-	text-align: center;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 35px;
+  font-weight: bold;
+  color: #333943;
+  text-align: center;
 }
-.infro .list span{
-	font-weight: normal;
-	color:#556677;
+.infro .list_l span{
+  font-weight: normal;
+  color:#556677;
 }
 .infro .num1{
-	width:20%;
+  width:20%;
 }
 .infro .num2{
-	width:28%;
+  width:28%;
 }
 .content_t ul li a {
   display: inline-block;
@@ -409,7 +411,7 @@ a.attorm{
   display: inline-block;
   width: 80%;
   line-height: 36px;
-  margin-left: 13%;
+  margin-left: 3%;
   overflow: hidden;
 }
 .news_eye ul.news_list a{
@@ -620,50 +622,50 @@ a.attorm{
   background: url('http://weixin.51tiancai.com/tiancaibao/pages/index/images/hot_box.png') no-repeat left;
 }
 .inform{
-	background: #ffffff;
-	border-radius:5px;
-	position: relative;
-	width:93%;
-	margin: 10px auto 0 auto;
-	box-sizing: border-box;
-	-webkit-box-sizing:border-box;
-	-moz-box-sizing: border-box;
+  background: #ffffff;
+  border-radius:5px;
+  position: relative;
+  width:93%;
+  margin: 10px auto 0 auto;
+  box-sizing: border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing: border-box;
 }
 .inform h2{
-	font-size: 12px;
-	color:#333943;
-	line-height: 44px;
-	padding-top: 5px;
-	padding-left: 16px;
+  font-size: 12px;
+  color:#333943;
+  line-height: 44px;
+  padding-top: 5px;
+  padding-left: 16px;
 }
 .inform img{
-	width:8px;
-	height: 14px;
-	position: absolute;
-	top:16px;
-	right:15px;
-	padding: 5px;
+  width:8px;
+  height: 14px;
+  position: absolute;
+  top:16px;
+  right:15px;
+  padding: 5px;
 }
 .inform img.active{
-	transform: rotate(90deg);	
+  transform: rotate(90deg); 
 }
 .inform p{
-	padding: 20px 30px 25px 30px;
-	color:#556677;
-	font-size: 12px;
-	border-top:1px solid #ececec;
+  padding: 20px 30px 25px 30px;
+  color:#556677;
+  font-size: 12px;
+  border-top:1px solid #ececec;
 }
 .std_rate{
-  	overflow: hidden;
- 	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/white_bg.png") no-repeat center;
-	background-size: 100% 100%;
-	border-radius:5px;
+    overflow: hidden;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/white_bg.png") no-repeat center;
+  background-size: 100% 100%;
+  border-radius:5px;
 }
 @media screen and (max-width:320px){
-	.std_rate{
-		padding-left: 15px;
-		padding-right: 15px;
-	}
+  .std_rate{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 .wordBreak{
   word-break: break-all;
@@ -871,7 +873,7 @@ a.attorm{
   background: #f1f5f8;
 }
 .whiteBg{
-	background: #ffffff;
+  background: #ffffff;
 }
 .containt_top h1 .addInterest{
     display: none;
@@ -880,69 +882,69 @@ a.attorm{
     vertical-align: middle;
 }
 .apy_list .tc th{
-	background: #f1f5f8;
-	border:1px solid #f5f5f5;
+  background: #f1f5f8;
+  border:1px solid #f5f5f5;
 }
 .apy_list .tc td{
-	border:1px solid #f5f5f5;
+  border:1px solid #f5f5f5;
 }
 #h01{
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/产品说明.png") no-repeat left 7px ;
-	background-size:13px 13px ;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/产品说明.png") no-repeat left 7px ;
+  background-size:13px 13px ;
 }
 #h02{
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/产品优势.png") no-repeat left 7px ;
-	background-size:13px 13px ;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/产品优势.png") no-repeat left 7px ;
+  background-size:13px 13px ;
 }
 #h03{
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/产品收益.png") no-repeat left 7px ;
-	background-size:14px 14px ;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/产品收益.png") no-repeat left 7px ;
+  background-size:14px 14px ;
 }
 #h04{
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/买入额度.png") no-repeat left 7px ;
-	background-size:13px 13px ;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/买入额度.png") no-repeat left 7px ;
+  background-size:13px 13px ;
 }
 #h05{
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/加入条件.png") no-repeat left 8px ;
-	background-size:12px 12px ;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/加入条件.png") no-repeat left 8px ;
+  background-size:12px 12px ;
 }
 #h06{
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/期限.png") no-repeat left 7px ;
-	background-size:14px 14px ;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/期限.png") no-repeat left 7px ;
+  background-size:14px 14px ;
 }
 #h07{
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/获得收益.png") no-repeat left 7px ;
-	background-size:14px 14px ;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/获得收益.png") no-repeat left 7px ;
+  background-size:14px 14px ;
 }
 #h08{
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/到期处理.png") no-repeat left 8px ;
-	background-size:12px 12px ;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/到期处理.png") no-repeat left 8px ;
+  background-size:12px 12px ;
 }
 #h09{
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/转出规则.png") no-repeat left 7px ;
-	background-size:13px 13px ;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/转出规则.png") no-repeat left 7px ;
+  background-size:13px 13px ;
 }
 #h10{
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/提现.png") no-repeat left 7px ;
-	background-size:13px 13px ;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/提现.png") no-repeat left 7px ;
+  background-size:13px 13px ;
 }
 #h11{
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/费用.png") no-repeat left 8px ;
-	background-size:13px 13px ;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/费用.png") no-repeat left 8px ;
+  background-size:13px 13px ;
 }
 #h12{
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/问号.jpg") no-repeat left 7px ;
-	background-size:14px 14px ;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/问号.jpg") no-repeat left 7px ;
+  background-size:14px 14px ;
 }
 #h13{
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/到账.jpg") no-repeat left 7px ;
-	background-size:13px 13px ;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/到账.jpg") no-repeat left 7px ;
+  background-size:13px 13px ;
 }
 #h14{
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/时间.jpg") no-repeat left 7px ;
-	background-size:14px 14px ;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/时间.jpg") no-repeat left 7px ;
+  background-size:14px 14px ;
 }
 #h15{
-	background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/限制.png") no-repeat left 7px ;
-	background-size:14px 14px ;
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/invest/images/限制.png") no-repeat left 7px ;
+  background-size:14px 14px ;
 }
