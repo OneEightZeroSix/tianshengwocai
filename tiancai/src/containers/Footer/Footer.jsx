@@ -75,7 +75,7 @@ class Footer extends Component {
     checkRoute()  {
       switch(window.location.hash.slice(1)){
         case "/talent/home":
-        console.log(123);
+        // console.log(123);
           this.setState({
             footNav:0
           })

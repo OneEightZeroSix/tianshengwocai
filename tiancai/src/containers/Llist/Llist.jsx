@@ -68,7 +68,12 @@ class Llist extends Component {
             context.strokeStyle = "#ccc"; //设置描边样式
             context.font = "12px Arial"; //设置字体大小和字体
             //绘制字体，并且指定位置
-            context.strokeText(n.toFixed(0) + "%", centerX - 13, centerY + 5);
+            if(n<=100){
+                context.strokeText(n.toFixed(0) + "%", centerX - 13, centerY + 5);
+            }else if(n>100){
+                context.strokeText("还款中", centerX - 18, centerY + 5);
+            }
+            
             context.stroke(); //执行绘制
             context.restore();
         }
@@ -79,8 +84,9 @@ class Llist extends Component {
             whiteCircle();
             text(speed);
             blueCircle(speed);
-            if (speed >= 100) speed = 99;
             speed += 1;
+            if (speed > 100) speed = 101;
+            
         }());
     }
     //swiper
@@ -203,7 +209,6 @@ class Llist extends Component {
                                         </div>
                                     )
                                 });
-                                console.log(document.querySelectorAll(".circles"))
                             })()}
                         </div>
                     </div>
