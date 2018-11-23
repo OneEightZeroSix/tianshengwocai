@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+import {connect} from 'react-redux';
 //css
 import './Sign.css';
 
@@ -6,19 +8,29 @@ import './Sign.css';
 
 class Sign extends Component {
 	constructor(props) {
-		console.log(props.location.pathname)
 		super(props);
 		this.state = {
 		   
 		};
 	  }
+	setCookie(){
+		var userName = document.getElementsByClassName("ipt_text")[0].value;
+		var passwords = document.getElementsByClassName("ipt_text")[1].value;
+		if(userName&&passwords){
+			console.log(this)
+			this.props.cookieState();
+			document.cookie = "userName=" + userName + "; path=/";
+			window.location.hash = "/talent/mine";
+		}
+		
+	}
   render() {
     return (
        		<div>
                 <header className="header tc" style={{background:"#fff"}}>
                     <article className="header_container por">
                         <i className="home poa">
-                            <a href="/" title="首页">
+                            <a href="#/talent/home" title="首页">
                             </a>
                         </i>
                         <h1 className="ft18" id="title">
@@ -63,7 +75,7 @@ class Sign extends Component {
 	                </ul>
 
 	            <article className="pt20 pl15 pr15">
-	                <a href="javascript:;" className="btn submit ft16 login " title="登录" url="/auth/login">
+	                <a href="javascript:;" onClick={this.setCookie.bind(this)} className="btn submit ft16 login " title="登录" url="/auth/login">
 	                    登录
 	                </a>
 	            </article>
@@ -81,4 +93,15 @@ class Sign extends Component {
   }
 }
 
-export default Sign;
+export default connect((state)=>{
+	return state
+  },(dispatch)=>{
+	return {
+	  cookieState(){
+		dispatch({
+		  type:"cookieState",
+		  isSign:"true"
+		})
+	  }
+	}
+  })(Sign);
