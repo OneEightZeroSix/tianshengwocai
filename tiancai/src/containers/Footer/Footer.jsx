@@ -81,6 +81,10 @@ class Footer extends Component {
     checkRoute()  {
       switch(window.location.hash.slice(1)){
         case "/talent/home":
+<<<<<<< HEAD
+=======
+        // console.log(123);
+>>>>>>> yong
           this.setState({
             footNav:0
           })
