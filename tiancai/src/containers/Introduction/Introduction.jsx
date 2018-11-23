@@ -46,17 +46,10 @@ class Introduction extends Component {
         context.font = "12px Arial"; //设置字体大小和字体
         //绘制字体，并且指定位置
         if(n<=100){
-<<<<<<< HEAD
             context.strokeText(n.toFixed(0) + "%", centerX - 13, centerY + 5);
         }else if(n>100){
             context.strokeText("还款中", centerX - 18, centerY + 5);
         }
-=======
-          context.strokeText(n.toFixed(0) + "%", centerX - 13, centerY + 5);
-      }else if(n>100){
-          context.strokeText("还款中", centerX - 18, centerY + 5);
-      }
->>>>>>> yong
         context.stroke(); //执行绘制
         context.restore();
     }
