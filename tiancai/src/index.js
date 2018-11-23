@@ -27,22 +27,25 @@ import About from './pages/About/About.jsx';
 import axios from 'axios';
 React.axios = axios
 //创建仓库
+
+var isSign;
+var cookies = document.cookie;
+	if(cookies){
+		isSign = "ture";
+	}else{
+		isSign = "false";
+	}
+
 const store = createStore(function (state = {
 	tab_l: false,
 	sign_s: false,
 	sign_t: true,
 	sign_p: true,
 	qiandao: true,
-	isSign:"false"
+	isSign: isSign
 	
 }, action) {
-	var cookies = document.cookie;
-	if(cookies!=""){
-		return {
-			...state,
-			isSign:"true"
-		}
-	}
+	
 	switch (action.type) {
 		case 'toggleTab':
 			return {
