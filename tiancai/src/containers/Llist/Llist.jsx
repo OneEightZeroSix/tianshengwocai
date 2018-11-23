@@ -113,6 +113,10 @@ class Llist extends Component {
     }
 
     componentWillMount() {
+        
+    }
+
+    componentDidMount() {
         window.onscroll = () => {
             var allHeight = document.body.scrollHeight;//body高度
             var seeHeight = window.screen.height;//可视区域高度
@@ -128,9 +132,6 @@ class Llist extends Component {
                 this.loadMore()
             }
         }
-    }
-
-    componentDidMount() {
         this.loadMore();
 
     }
@@ -143,7 +144,7 @@ class Llist extends Component {
     }
 
     componentWillUnmount() {
-
+        window.onscroll = null;
     }
 
     //html

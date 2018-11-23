@@ -73,7 +73,7 @@ class Mlists extends Component {
                         </a>
                     </li>
                     <li>
-                        <a href="/home/info">
+                        <a href="#/about/signOut">
                             <i className="icon s_t"></i>
                             <div className="name">账户设置</div>
                         </a>

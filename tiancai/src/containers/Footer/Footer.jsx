@@ -40,7 +40,7 @@ class Footer extends Component {
         link: "/talent/mine",
         iconName: "home_icon",
         icon_yel: "home_yel",
-        qty: 2
+        qty: 1
       }]
     }
     // switch(window.location.hash.slice(1)){
