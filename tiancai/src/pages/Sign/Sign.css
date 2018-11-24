@@ -1,4 +1,4 @@
-.apy_tab {
+/* .apy_tab {
   width: 100%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -26,7 +26,7 @@
   vertical-align: middle;
   padding-left: 5px;
   font-family: normal;
-}
+} */
 /* .apy_list .item {
   padding: 0 15px;
   line-height: 44px;
@@ -34,22 +34,25 @@
   position: relative;
 } */
 .apy_list .item .label_l {
-  display: inline-block;
+  /* display: inline-block;
   min-width: 17px;
   vertical-align: middle;
   padding-right: 5px;
   text-align: center;
-  font-size: 0;
+  font-size: 0; */
+  position: relative;
 }
 .apy_list .item .label_l i {
-  display: inline-block;
-  vertical-align: middle;
-  background: url("/tiancaibao/pages/signup/signup.png");
+  /* display: inline-block; */
+  /* vertical-align: middle; */
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/signup/signup.png");
   -webkit-background-size: cover;
           background-size: cover;
 }
 /**手机号图标**/
 .apy_list .item .label_l i.tel_icon {
+  position: absolute;
+  top: 0px;
   width: 15px;
   height: 23px;
   background-repeat: no-repeat;
@@ -57,6 +60,8 @@
 }
 /**密码图标**/
 .apy_list .item .label_l i.pwd_icon {
+  position: absolute;
+  top: 0px;
   width: 15px;
   height: 20px;
   background-repeat: no-repeat;
@@ -64,23 +69,25 @@
 }
 /**验证码图标**/
 .apy_list .item .label_l i.ident_icon {
+  position: absolute;
+  top: 0px;
   width: 15px;
   height: 23px;
   background-repeat: no-repeat;
   background-position: 0 -40px;
 }
 .apy_list .item .label_l i.img_icon,.apy_list .item .label_l i.info_icon{
-  width: 15px;
+  /* width: 15px;
   height: 23px;
   display: inline-block;
-  vertical-align: middle;
-  background: url("/tiancaibao/pages/signin/sprite.png");
+  vertical-align: middle; */
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/signin/sprite.png");
   -webkit-background-size: cover;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 0 0;
 }
-.apy_list .item .label_l i.info_icon{
+/* .apy_list .item .label_l i.info_icon{
   background-position: 0 -30px;
 }
 .identifying {
@@ -107,9 +114,9 @@ a.hide_style{
   background: #fff9cc;
   border: transparent;
   border-bottom: 1px solid #ffe200;
-}
+} */
 /* 验证码弹框 */
-.mask {
+/* .mask {
   height: 100%;
   width: 100%;
   max-width: 600px;
@@ -142,18 +149,18 @@ a.hide_style{
   background: #ffe200;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
-}
+} */
 .clo_03 {
-  width: 18px;
-  height: 18px;
-  background: url("/tiancaibao/pages/point_detail/images/close_03.png") no-repeat center;
-  position: absolute;
-  top: -15px;
-  right: -15px;
+  /* width: 18px; */
+  /* height: 18px; */
+  background: url("http://weixin.51tiancai.com/tiancaibao/pages/point_detail/images/close_03.png") no-repeat center;
+  /* position: absolute; */
+  /* top: -15px; */
+  /* right: -15px;
   border-radius: 50%;
-  padding: 10px;
+  padding: 10px; */
 }
-.identifying_con input {
+/* .identifying_con input {
   display: inline-block;
   width: 50%;
   height: 36px;
@@ -173,7 +180,7 @@ a.hide_style{
 a.actClor:link,a.actClor:active{
   color: #1ec0ff;
 }
-
+ */
 
 
 

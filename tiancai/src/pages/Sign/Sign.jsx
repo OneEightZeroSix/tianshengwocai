@@ -28,13 +28,13 @@ class Sign extends Component {
 				phone:phone,
 				password:password
 			},
-			success:function(data){
+			success:(data)=>{
 				console.log(data);
 				if(data=="true"){
 					var userName = phone
 					var passwords = password					
 					// console.log(this)
-					// this.props.cookieState();
+					this.props.cookieState();
 					document.cookie = "userName=" + userName + "; path=/";
 					window.location.hash = "/talent/mine";
 				}else if(data=="false"){

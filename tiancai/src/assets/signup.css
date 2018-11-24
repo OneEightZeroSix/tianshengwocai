@@ -76,12 +76,12 @@
     background-repeat: no-repeat;
     background-position: 0 -64px;
   }
-  a.btn {
+  /* a.btn {
     border-radius: 3px;
     width: 33%;
     height: 42px;
     line-height: 42px;
-  }
+  } */
   a.submit {
     width: 90%;
     margin-left: 5%;
