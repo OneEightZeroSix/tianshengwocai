@@ -13,15 +13,17 @@ import { HashRouter as Router, Route, Redirect, Switch } from "react-router-dom"
 //使用withRouter
 // import PropTypes from "prop-types";
 // import { withRouter } from "react-router";
-
+//css
 import './index.css';
 import './assets/common.css';
 import './assets/index.css';
+import './assets/signup.css';
 import * as serviceWorker from './serviceWorker';
 //引入页面组件
 import Talent from './pages/Talent/Talent.jsx';
 import Sign from './pages/Sign/Sign.jsx';
 import About from './pages/About/About.jsx';
+import Register from './pages/Register/Register.jsx';
 
 //axio
 import axios from 'axios';
@@ -82,6 +84,7 @@ ReactDOM.render(
 					<Route path='/talent' component={Talent} />
 					<Route path="/sign" component={Sign} />
 					<Route path='/about' component={About} />
+					<Route path='/register' component={Register} />
 					<Redirect from="/" to="/talent/home" />
 					{/* <Route path="/" render={()=><Redirect to="/home" />} /> */}
 				</Switch>
