@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import { Link } from "react-router-dom";
+//jquery
+import $ from 'jquery';
 
 //css
 
@@ -12,13 +14,42 @@ class Mheader extends Component {
         super(props);
         this.state = {
             isShow: true,
+            uname:"",
+            docs:"",
             assets: {
-                total_assets: "3100.00",
+                total_assets: "0.00",
                 profit: "200.00",
                 locking: "1000.00",
-                usable: "2100.00",
+                usable: "3800.00",
             }
         };
+    }
+    componentWillMount() {
+        var cookies = document.cookie;
+        var arr = cookies.split('=');
+        var username = arr[1];
+        $.ajax({
+            type:'POST',
+            url:'http://localhost:4321/nice/mine',
+            data:{
+                username:username
+            },
+            success:(docs)=>{
+                console.log(docs);
+                this.setState({
+                    docs:docs
+                });
+                this.setState({
+                    assets: {
+                        total_assets: docs[0].sum+'.00',
+                        profit: "200.00",
+                        locking: "1000.00",
+                        usable: "3800.00",
+                    },
+                    uname:username
+                })
+            }
+        })
     }
     //事件
     eyeClick() {
@@ -36,10 +67,10 @@ class Mheader extends Component {
             this.setState({
                 isShow: !this.state.isShow,
                 assets: {
-                    total_assets: "3100.00",
+                    total_assets: this.state.docs[0].sum+'.00',
                     profit: "200.00",
                     locking: "1000.00",
-                    usable: "2100.00",
+                    usable: "3800.00",
                 }
             })
         }
@@ -52,7 +83,7 @@ class Mheader extends Component {
                 <div className="containt_top por" >
                     <div className="top">
                         <div className="fl top_left">
-                            <span className="co33 fw"></span><Link to="javascript:;" className="co33 member" href="/home/members-grade">注册会员</Link>
+                            <span className="co33 fw">{this.state.uname}</span><Link to="javascript:;" className="co33 member" href="/home/members-grade">注册会员</Link>
                         </div>
                         <div className="fr top_right">
                             <Link to="/home/talent-deail" className="co33" style={{ width: "120px" }}>天才值：<span className="red talent_value">60</span></Link>
@@ -82,8 +113,8 @@ class Mheader extends Component {
                         <p><span className="ft15 co33 account_amount">{this.state.assets.usable}</span></p>
                     </div>
                     <div className="fr operation">
-                        <Link to="" className="co33 ft15" title="提现">提现</Link>
-                        <Link to="" className="co33 recharge block ft15" title="充值">充值</Link>
+                        <Link to="/withdrawal" className="co33 ft15" title="提现">提现</Link>
+                        <Link to="/recharge" className="co33 recharge block ft15" title="充值">充值</Link>
                     </div>
                 </div>
             </div>

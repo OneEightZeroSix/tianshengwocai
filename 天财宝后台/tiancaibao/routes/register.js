@@ -12,10 +12,10 @@ router.post('/register', function(req, res, next) {
 	   				db.collection('users').find({phone:req.body.phone,password:req.body.password}).toArray(function(err, docs) {
 					    console.log("Found the following records");
 					    console.log(docs);
-					    if(!docs){
-					    	resolve()
-					    }else{
+					    if(docs.length>0){
 					    	res.send('账号已存在');
+					    }else{
+					    	resolve()
 					    }    	
 		  			});
 	   			})

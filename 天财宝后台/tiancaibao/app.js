@@ -8,6 +8,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var registerRouter = require('./routes/register');
 var signRouter = require('./routes/sign');
+var rechargeRouter = require('./routes/recharge');
+var withdrawalRouter = require('./routes/withdrawal');
+var minewalRouter = require('./routes/mine');
 
 var app = express();
 
@@ -25,7 +28,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/nice', registerRouter);
 app.use('/nice', signRouter);
-
+app.use('/nice', rechargeRouter);
+app.use('/nice', withdrawalRouter);
+app.use('/nice', minewalRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
