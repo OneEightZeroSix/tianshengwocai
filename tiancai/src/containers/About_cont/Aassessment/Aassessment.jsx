@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import Swipers from 'swiper/dist/js/swiper.js'
 
 import './Aassessment.css';
-
+//jquery
+import $ from 'jquery';
 class Aassessment extends Component {
-
+    //事件
     componentDidMount() {
         var mySwiper = new Swipers('.swiper-container', {
-           
+            
         });
 
     }
-
+    //html
     render() {
         return (
             <section>

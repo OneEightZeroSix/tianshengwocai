@@ -4,7 +4,6 @@ import './Mine.css';
 //引入子组件
 import Mheader from "../../containers/Mheader/Mheader.jsx";
 import Mlists from "../../containers/Mlists/Mlists.jsx";
-
 class Mine extends Component {
   //数据
   constructor(props) {

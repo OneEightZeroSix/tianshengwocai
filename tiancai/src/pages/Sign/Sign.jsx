@@ -34,9 +34,9 @@ class Sign extends Component {
 					var userName = phone
 					var passwords = password					
 					// console.log(this)
-					this.props.cookieState();
 					document.cookie = "userName=" + userName + "; path=/";
 					window.location.hash = "/talent/mine";
+					this.props.cookieState();
 				}else if(data=="false"){
 					alert('账号或者密码不正确')
 				}
