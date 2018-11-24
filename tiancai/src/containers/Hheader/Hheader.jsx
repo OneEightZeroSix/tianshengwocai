@@ -15,14 +15,14 @@ class Hheader extends Component {
   }
   //事件
   componentDidMount() {
-    document.documentElement.addEventListener('scroll', e => {
-        console.log(77888);
-        this.setState({
-            hide: false
-        });
-    });
+    // document.documentElement.addEventListener('mousedown', e => {
+    //     console.log(77888);
+    //     this.setState({
+    //         hide: false
+    //     });
+    // });
   }
-  //html
+  html
   
   render() {
     var hBtn = classnames({
@@ -43,8 +43,4 @@ class Hheader extends Component {
 
 export default connect((state)=>{
     return state;
-},(dispatch)=>{
-  return {
-
-  }
 })(Hheader);

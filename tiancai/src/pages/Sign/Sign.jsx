@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 
 import {connect} from 'react-redux';
+//router
+import { Link } from 'react-router-dom';
 //css
 import './Sign.css';
+//引入jquery
+import $ from 'jquery';
 
 //引入子组件
 
@@ -13,16 +17,32 @@ class Sign extends Component {
 		   
 		};
 	  }
-	setCookie(){
-		var userName = document.getElementsByClassName("ipt_text")[0].value;
-		var passwords = document.getElementsByClassName("ipt_text")[1].value;
-		if(userName&&passwords){
-			console.log(this)
-			this.props.cookieState();
-			document.cookie = "userName=" + userName + "; path=/";
-			window.location.hash = "/talent/mine";
-		}
-		
+	//登录
+	denglu(){
+		var phone = this.refs.tel.value;
+		var password = this.refs.psw.value;
+		$.ajax({
+			type:'POST',
+			url:'http://localhost:4321/nice/sign',
+			data:{
+				phone:phone,
+				password:password
+			},
+			success:function(data){
+				console.log(data);
+				if(data=="true"){
+					var userName = phone
+					var passwords = password					
+					// console.log(this)
+					// this.props.cookieState();
+					document.cookie = "userName=" + userName + "; path=/";
+					window.location.hash = "/talent/mine";
+				}else if(data=="false"){
+					alert('账号或者密码不正确')
+				}
+				
+			}
+		})
 	}
   render() {
     return (
@@ -34,9 +54,9 @@ class Sign extends Component {
                             </a>
                         </i>
                         <h1 className="ft18" id="title">
-                            <a href="/sign-up/step-one" className="ft14 fr co33" title="注册">
+                            <Link to={{ pathname: "/register" }} className="ft14 fr co33" title="注册">
                                 注册
-                            </a>
+                            </Link>
                         </h1>
                     </article>
                 </header>
@@ -52,14 +72,14 @@ class Sign extends Component {
 	                            <i className="tel_icon">
 	                            </i>
 	                        </label>
-	                        <input type="tel" className="ipt_text" name="phone" maxLength="11" placeholder="请输入手机号" />
+	                        <input type="tel" ref="tel" className="ipt_text" name="phone" maxLength="11" placeholder="请输入手机号" />
 	                    </li>
 	                    <li className="item pas">
 	                        <label className="label_l">
 	                            <i className="pwd_icon">
 	                            </i>
 	                        </label>
-	                        <input type="password" className="ipt_text" placeholder="请输入密码" name="password" />
+	                        <input type="password" ref="psw" className="ipt_text" placeholder="请输入密码" name="password" />
 	                    </li>
 	                    <li className="item codes cf hide">
 	                        <label className="label_l fl">
@@ -75,7 +95,7 @@ class Sign extends Component {
 	                </ul>
 
 	            <article className="pt20 pl15 pr15">
-	                <a href="javascript:;" onClick={this.setCookie.bind(this)} className="btn submit ft16 login " title="登录" url="/auth/login">
+	                <a href="javascript:;" onClick={this.denglu.bind(this)} className="btn submit ft16 login " title="登录" url="/auth/login">
 	                    登录
 	                </a>
 	            </article>

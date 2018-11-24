@@ -16,7 +16,9 @@ class Swiper extends Component {
     };
   }
   //事件
-
+  nn(){
+    console.log(5656);
+  }
   componentDidMount(){
       var mySwiper = new Swipers('.swiper-container', {
           autoplay: {
@@ -29,7 +31,7 @@ class Swiper extends Component {
           },
       })
   }
- 
+  
 
   //html
   render() {
