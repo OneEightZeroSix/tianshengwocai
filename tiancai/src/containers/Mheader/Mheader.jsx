@@ -41,7 +41,7 @@ class Mheader extends Component {
                 });
                 this.setState({
                     assets: {
-                        total_assets: docs[0].sum+'.00',
+                        total_assets: Number(docs)+'.00',
                         profit: "200.00",
                         locking: "1000.00",
                         usable: "3800.00",
