@@ -14,7 +14,6 @@ router.post('/recharge', function(req, res, next) {
 						    console.log(docs);
 						    if(docs.length>0){
 						    	// console.log(docs.sum);
-						    	zhiqian:docs.sum;
 						    	resolve()
 						    }else{
 					    		jia()								 
@@ -47,7 +46,7 @@ router.post('/recharge', function(req, res, next) {
 					 	'username': req.body.username,'password':req.body.password
 					}, {
 						  $set: {
-						    'sum': zhiqian+req.body.sum
+						    'sum': req.body.sum
 						  }					
 					});
 			    		res.send('充值成功')
