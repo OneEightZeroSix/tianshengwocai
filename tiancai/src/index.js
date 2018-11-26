@@ -20,6 +20,7 @@ import './assets/index.css';
 import './assets/signup.css';
 import './assets/recharge.css';
 import './assets/withdrawal.css';
+import './assets/fix.css';
 import * as serviceWorker from './serviceWorker';
 //引入页面组件
 import Talent from './pages/Talent/Talent.jsx';
@@ -28,6 +29,7 @@ import About from './pages/About/About.jsx';
 import Register from './pages/Register/Register.jsx';
 import Recharge from './pages/Recharge/Recharge.jsx';
 import withdrawal from './pages/withdrawal/withdrawal.jsx';
+import Detail from './pages/Detail/Detail.jsx';
 
 
 //axio
@@ -92,6 +94,7 @@ ReactDOM.render(
 					<Route path='/register' component={Register} />
 					<Route path='/Recharge' component={Recharge} />
 					<Route path='/withdrawal' component={withdrawal} />
+					<Route path='/detail' component={Detail} />
 					<Redirect from="/" to="/talent/home" />
 					{/* <Route path="/" render={()=><Redirect to="/home" />} /> */}
 				</Switch>

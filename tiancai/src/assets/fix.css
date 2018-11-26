@@ -1,0 +1,456 @@
+
+.containt_top {
+    width: 100%;
+  }
+  .containt_top h1 {
+    line-height: 30px;
+  }
+  .containt_top_d h1 span {
+    display: block;
+  }
+  .all_t_d {
+    background: #fff;
+  }
+  .news_eye_d{
+    width: 100%;
+    height: 36px;
+    z-index: 999;
+    overflow: hidden;
+  }
+  .news_eye_d ul.news_list {
+    display: inline-block;
+    width: 80%;
+    line-height: 36px;
+    margin-left: 13%;
+    overflow: hidden;
+  }
+  .news_eye_d ul.news_list a{
+    color: #333943;
+  }
+  .lb {
+    background-image: url("/tiancaibao/pages/index/images/lb02.png");
+    background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    top: 9px;
+    left: 5%;
+  }
+  .content_t_d {
+    background-color: #fff;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .content_t_d ul li {
+    overflow: hidden;
+  }
+  .content_t_d ul li a {
+    display: inline-block;
+    width: 33.3%;
+    float: left;
+    line-height: 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .content_t_d ul li a i,.content_t_d ul li a span{
+    display: block;
+  }
+  .content_t_d ul li .info_wra {
+    width: 100%;
+    display: -webkit-flex;
+    display: flex;
+    display: -webkit-box;
+    display: box;
+  }
+  .content_t_d ul li .info_wra li {
+    width: 33.3%;
+    -wekit-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .cur_all_t {
+    background: transparent;
+  }
+  .cur_all_t .containt_top_d {
+    width: 100%;
+    height: 220px;
+    background: #ffe001;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+  }
+  .cur_all_t .containt_top_d h1 {
+    line-height: 36px;
+  }
+  .cur_all_t .containt_top_d h1 span {
+    display: block;
+  }
+  .cur_all_t .content_t_d {
+    width: 100%;
+    top: -68px;
+    background-color: #fff;
+    border-radius: 3px;
+    width: 80%;
+    margin-left: 10%;
+    overflow: hidden;
+  }
+  .cur_all_t .content_t_d ul li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .cur_all_t .content_t_d ul li a {
+    display: inline-block;
+    width: 33.3%;
+    float: left;
+    line-height: 25px;
+  }
+  .cur_all_t .content_t_d ul li a .icn {
+    width: 25px;
+    height: 25px;
+    background: url("/tiancaibao/images/icon/invest_03.png") no-repeat center center;
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
+  .cur_all_t .content_t_d ul li a .icn img {
+    display: inline-block;
+    width: 100%;
+  }
+  .cur_all_t .content_t_d ul li a i.y_1 {
+    background-position: 0 0;
+  }
+  .cur_all_t .content_t_d ul li a i.s_q {
+    background-position: -46px 0;
+  }
+  .cur_all_t .content_t_d ul li a i.safe_3 {
+    background-position: -92px 0;
+  }
+  .cur_all_t .content_t_d ul li a span {
+    margin-left: 1px;
+  }
+  .cur_content_wra {
+    top: -68px;
+  }
+  a.btn {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 600px;
+    height: 46px;
+    line-height: 46px;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 3px;
+  }
+  .bor_b {
+    border-bottom: 1px solid #ececec;
+  }
+  .dashed{
+    border-left: 1px solid #ecedf1;
+  }
+  .l_bor{
+    border-left: 1px solid #a0abbb;
+  }
+  .pb60{
+    padding-bottom: 60px;
+  }
+  .content_t_d .quesClick1{
+      width: 25px;
+      height: 20px;
+      color: #556677;
+      background: url(/tiancaibao/pages/home/images/what.png) no-repeat center 1px;
+      vertical-align: middle;
+      background-size: 15px 15px;
+  }
+  .white_bg{
+    background: #ffffff;
+}
+.red_fnt{
+    color:#f24c2c;
+}
+.gray_fnt{
+    color:#a0abbb;
+}
+.mt10x{
+    margin-top:-10px;
+}
+.mt25{
+    margin-top:25px;
+}
+.over_h{
+    overflow: hidden;
+}
+.s_tab{
+    width:33%;
+}
+.s_tab1{
+    width:33.3%;
+    height:5px;
+}
+.bor_t{
+    border-top: 1px solid #ecedf1;
+}
+.rt_b{
+    border-right:1px solid #ecedf1;
+}
+.bt_b{
+    border-bottom:1px solid #ecedf1;
+}
+.line_hgt50{
+    line-height: 50px;
+    height:50px;
+}
+.line_hgt55{
+    line-height: 55px;
+    height:40px;
+}
+.line_hgt25{
+    line-height: 25px;
+}
+.line_hgt40{
+    line-height: 40px;
+}
+.line_hgt48{
+    height: 48px;
+    line-height: 48px;
+}
+.line_hgt50x{
+    line-height: 70px;
+    height:50px;
+}
+.process_box{
+    width:68%;
+    background: #ecedf1;
+    height:10px;
+    border-radius: 5px;
+}
+.yellow_bg{
+    background: url('/tiancaibao/pages/standard/images/yellow_bg.png') repeat-x center;
+    width:80%;
+    height:10px;
+    border-radius: 5px;
+}
+.yellow_bg1{
+    background: #ffe200;
+}
+.icon_bg{
+    position: relative;
+    margin-top:-16px;
+    width:80%;
+    height:20px;
+    background: url('/tiancaibao/pages/standard/images/icon.png') no-repeat right;
+    background-size: contain;
+}
+.mini_1{
+    width:20px;
+    height:20px;
+    margin-top:16px;
+    background: url('/tiancaibao/pages/standard/images/mini_1.png') no-repeat center;
+    background-size: contain;
+}
+.mini_2{
+    width:20px;
+    height:20px;
+    margin-top:16px;
+    background: url('/tiancaibao/pages/standard/images/mini_2.png') no-repeat center;
+    background-size: contain;
+}
+.mini_3{
+    width:20px;
+    height:20px;
+    margin-top:16px;
+    background: url('/tiancaibao/pages/standard/images/mini_3.png') no-repeat center;
+    background-size: contain;
+}
+.gray_fnt1{
+    color:#67738a;
+}
+.gray_fnt2{
+    color:#333943;
+}
+.gray_fnt3{
+    color:#3e444f;
+}
+.blue_bg{
+    width:100%;
+    height:30px;
+    background: url('/tiancaibao/pages/standard/images/blue_bg.png') no-repeat top left;
+    background-size: contain;
+}
+.tab_css h1{
+    text-indent: 18px;
+    position: relative;
+}
+.tab_css h1:before{
+    display: block;
+    content: '';
+    width: 0px;
+    height: 14px;
+    border-right: 4px solid #ffb933;
+    position: absolute;
+    left: 0px;
+    top: 8px;
+}
+.tab_css h2 p{
+    position: relative;
+    text-indent: 18px;
+    overflow: hidden;
+}
+.tab_css h2 p:nth-child(1):before{
+    display: block;
+    content: '';
+    width: 0px;
+    height: 14px;
+    border-right: 4px solid #1ec0ff;
+    position: absolute;
+    left: 0px;
+    top: 8px;
+}
+.tab_css h2 span{
+    display: inline-block;
+    width: 85px;
+    float: left;
+}
+.tab_css table{
+    width: 100%;
+    border-right: 1px solid #a0abbb;
+    border-bottom: 1px solid #a0abbb;
+    line-height: 32px;
+    margin-top: 10px;
+}
+.tab_css table td,.tab_css table th{
+    font-size: 14px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 18px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.tab_css table th,.tab_css table td{
+    border-left:1px solid #a0abbb;
+    border-top:1px solid #a0abbb;
+}
+.tab_css table td span,.tab_css table th span{
+  display: block;
+}
+.tab_list{
+    padding-bottom: 46px;
+}
+.dis-n{
+    display: none;
+}
+a.submit {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 600px;
+    height: 46px;
+    line-height: 46px;
+    margin-left: 0;
+    margin-right: 0;
+}
+/*出借页*/
+.std_in{
+    border:none;
+    border-bottom:1px solid #a0abbb;
+    width:80%;
+    height:40px;
+    line-height: 40px;
+    text-align: center;
+}
+.pt25{
+    padding-top:25px;
+}
+.blue_fnt{
+    color:#1ec0ff;
+}
+.in_blue{
+    display: inline-block;
+    padding: 5px 7px;
+    border: 1px solid #1ec0ff;
+    border-radius: 3px;
+    color: #1ec0ff;
+    line-height: 10px;
+    font-size: 12px;
+}
+.arrow_rt{
+    height:15px;
+    width:15px;
+    background: url('/tiancaibao/pages/standard/images/arr.png') no-repeat center;
+    background-size: contain;
+    margin-top:27px;
+    margin-left: 7px;
+}
+.quesClick{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #a0abbb;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 16px;
+    font-size: 12px;
+    margin-top: -5px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+.quesClick:hover,.quesClick:active,.quesClick:link{
+    color: #FFFFFF;
+}
+
+/*超时未出借弹框*/
+.delogMask {
+    height: 100%;
+    width: 100%;
+    max-width: 600px;
+    position: fixed;
+    top: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+}
+.delogMask .delogMask-wrap {
+    height: 210px;
+    width: 80%;
+    border-radius: 5px;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    background: #fff;
+    overflow: hidden;
+}
+.delogMask .delogMask-wrap .delogMaskBtn {
+    width: 100%;
+    border-top: 1px solid #ecedf1;
+    bottom: 0;
+    height: 24px;
+    border-top: 1px solid #ecedf1;
+    padding: 10px 0;
+}
+.hotSign{
+    color: #FFFFFF;
+    background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#ff7568), to(#fea679));
+    background: -moz-linear-gradient(left, #ff7568, #fea679);
+    background: -o-linear-gradient(left, #ff7568, #fea679);
+    padding: 2px 3px;
+    border-radius: 20px;
+    position: relative;
+    top: -15px;
+    left: -5px;
+}
+.apy_list .items h1:before{
+  display: block;
+  content: '';
+  width: 0px;
+  height: 14px;
+  border-right: 4px solid #ffb933;
+  position: absolute;
+  left: 0px;
+  top: 7px;
+}

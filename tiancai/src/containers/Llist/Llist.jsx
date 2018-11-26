@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Llist.css';
 import ReactDOM from 'react-dom';
+//router
+import { Link } from 'react-router-dom';
 //swiper
 import Swipers from 'swiper/dist/js/swiper.js'
 import 'swiper/dist/css/swiper.min.css'
@@ -169,7 +171,7 @@ class Llist extends Component {
                                 return this.state.Llist.map((item, index) => {
                                     return (
                                         <div key={index} className="std_rate  pt10 pb10 pl20 pr20">
-                                            <a className="block">
+                                            <Link to={{pathname:"/Detail"}}className="block">
                                                 <h1 className="ft14 cf mb5 pt5">
                                                     <label className="hotSign ft12 fl mr5">
                                                         散&nbsp;标
@@ -206,7 +208,7 @@ class Llist extends Component {
                                                         }}>
                                                     </canvas>
                                                 </div>
-                                            </a>
+                                            </Link>
                                         </div>
                                     )
                                 });
