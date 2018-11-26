@@ -1,14 +1,67 @@
 import React, { Component } from 'react';
 import './withdrawal.css';
+//jquery
+import $ from 'jquery';
+import { Link } from "react-router-dom";
 
 class withdrawal extends Component {
+     //数据
+    constructor(props) {
+        super(props);
+        this.state = {
+            docs:""
+            }
+        };
+    //事件
+    componentWillMount() {
+        var cookies = document.cookie;
+        var arr = cookies.split('=');
+        var username = arr[1];
+        $.ajax({
+            type:'POST',
+            url:'http://localhost:4321/nice/mine',
+            data:{
+                username:username
+            },
+            success:(docs)=>{
+                // console.log(docs);
+                this.setState({
+                    docs:docs
+                });
+            }
+        })
+    }
+    //提现
+    confirm_w(){
+        var cookies = document.cookie;
+        var arr = cookies.split('=');
+        var username = arr[1];
+        var sum = $("#input").val();
+        if(sum){
+            $.ajax({
+                type:'POST',
+                url:'http://localhost:4321/nice/withdrawal',
+                data:{
+                    username:username,
+                    sum:sum
+                },
+                success:(docs)=>{
+                    alert(docs);
+                    this.setState({
+                        docs:this.state.docs - sum
+                    })
+                }
+            })
+        }     
+    }
+    //html
     render() {
         return (
             <div>
             <header className="header tc">
                 <article className="header_container por">
                     <i className="home poa">
-                        <a href="javascript:history.go(-1)" title="首页"></a>
+                        <Link to={{pathname:"/talent/mine"}} title="首页"></Link>
                     </i>
                     <h1 className="ft16">提现</h1>
                 </article>
@@ -19,18 +72,18 @@ class withdrawal extends Component {
             <section className="select_col">
                 <form action="/withdraw/confirm" method="post" className="apy_tab">
                     <div className="pl15 pr15 buy_amt">
-                        <span>账户余额</span><h3 className="fn ft14 buy_title" style={{width:"50%"}}>0元</h3>
+                        <span>账户余额</span><h3 className="fn ft14 buy_title" style={{width:"50%"}}>{this.state.docs+'.00元'}</h3>
                     </div>
                     <div className="pl15 pr15 buy_amt">
                         <span>提现手续费</span><h3 className="fn ft14 buy_title" style={{width:"50%"}} id="fee">0.00元</h3>
                     </div>
                     <div className="pl15 pr15 buy_amt">
-                        <input type="number" name="amount" id="input" autocomplete="off" placeholder="请输入提现金额" className="ft14 amt" require="" /><h3 className="fn ft14 buy_title">元</h3>
+                        <input type="number" name="amount" id="input" autoComplete="off" placeholder="请输入提现金额" className="ft14 amt" require="" /><h3 className="fn ft14 buy_title">元</h3>
                     </div>
                     <p className="pll15 pr15 mt10 tr ftcor">当前最多可提现¥<span id="user_amount">0</span>元</p>
                     <ul className="pt10">
                         <li>
-                            <a href="javascript:;" className="btn submit ft16 gray" title="确认提现">确认提现</a>
+                            <a onClick={this.confirm_w.bind(this)} className="tixian btn submit ft16" title="确认提现">确认提现</a>
                         </li>
                     </ul>
                     <p className="mt10 tc ftcor ft12">注：每月5次免费提现,超过次数每笔提现收2.00元手续费</p>
@@ -44,7 +97,7 @@ class withdrawal extends Component {
 
                 <p className="pb10 pt10 pl10 pr10 ft12 co55">根据国家相关政策要求，2018年7月1日起，每日提现≤10000元时，可选择“快速到账”方式，提现当天到账；当日提现金额＞10000元时，选择“普通到账”的交易，参照如下普通到账时间：</p>
 
-                <div className="pb10 pt10 pl10 pr10"><table border="1" cellspacing="0" cellpadding="0">
+                <div className="pb10 pt10 pl10 pr10"><table border="1" cellSpacing="0" cellPadding="0">
             
 
                     <tbody><tr>
